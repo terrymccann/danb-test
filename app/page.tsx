@@ -1,19 +1,30 @@
-import { Button } from "@/components/ui/button"
+import { ExamCard } from "@/components/exam/ExamCard";
+import { examConfigs } from "@/lib/exam-config";
 
-export default function Page() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
+    <main className="mx-auto max-w-5xl px-4 py-12">
+      <div className="mb-10 text-center">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          DANB CDA Practice Exams
+        </h1>
+        <p className="mt-3 text-muted-foreground">
+          Prepare for the Certified Dental Assistant exam with timed,
+          randomized practice tests across all three CDA components.
+        </p>
       </div>
-    </div>
-  )
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {Object.values(examConfigs).map((config) => (
+          <ExamCard key={config.type} config={config} />
+        ))}
+      </div>
+
+      <p className="mt-8 text-center text-sm text-muted-foreground">
+        Each practice exam simulates real DANB CDA testing conditions with
+        randomized questions and a countdown timer. A score of 75% or higher
+        is considered passing.
+      </p>
+    </main>
+  );
 }

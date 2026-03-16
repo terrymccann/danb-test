@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ice-0001",
+    "examType": "ice",
+    "topic": "Standard Precautions",
+    "stem": "Standard precautions are based on the principle that:",
+    "options": [
+      { "id": "a", "text": "Only patients with known infections pose a risk" },
+      { "id": "b", "text": "All blood and body fluids are potentially infectious" },
+      { "id": "c", "text": "Gloves alone provide adequate protection" },
+      { "id": "d", "text": "Infection control is only necessary during surgical procedures" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Standard precautions are based on the assumption that all blood, body fluids, secretions, excretions, non-intact skin, and mucous membranes may contain transmissible infectious agents.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 2"
+  },
+  {
+    "id": "ice-0002",
+    "examType": "ice",
+    "topic": "Standard Precautions",
+    "stem": "The single most effective method of preventing the spread of infection is:",
+    "options": [
+      { "id": "a", "text": "Wearing gloves" },
+      { "id": "b", "text": "Using surface disinfectants" },
+      { "id": "c", "text": "Proper hand hygiene" },
+      { "id": "d", "text": "Sterilizing all instruments" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Hand hygiene (handwashing or use of alcohol-based hand rub) is consistently recognized as the single most important practice for preventing the transmission of infectious agents in healthcare settings.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 3"
+  },
+  {
+    "id": "ice-0003",
+    "examType": "ice",
+    "topic": "Standard Precautions",
+    "stem": "Personal protective equipment (PPE) for dental procedures includes all of the following EXCEPT:",
+    "options": [
+      { "id": "a", "text": "Protective eyewear" },
+      { "id": "b", "text": "Face mask" },
+      { "id": "c", "text": "Surgical cap" },
+      { "id": "d", "text": "Sterile surgical gown" }
+    ],
+    "correctOptionId": "d",
+    "explanation": "Standard PPE for routine dental procedures includes gloves, mask, protective eyewear, and clinical attire. Sterile surgical gowns are only required for surgical procedures, not routine dental care.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 3"
+  },
+  {
+    "id": "ice-0004",
+    "examType": "ice",
+    "topic": "Standard Precautions",
+    "stem": "Examination gloves should be changed:",
+    "options": [
+      { "id": "a", "text": "Every hour during long procedures" },
+      { "id": "b", "text": "Between each patient and when torn or punctured" },
+      { "id": "c", "text": "Only when visibly contaminated" },
+      { "id": "d", "text": "At the end of the morning and afternoon sessions" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Gloves must be changed between patients, when torn or punctured during a procedure, and before touching clean surfaces or items. They should never be washed and reused.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 3"
+  },
+  {
+    "id": "ice-0005",
+    "examType": "ice",
+    "topic": "Standard Precautions",
+    "stem": "Which type of hand hygiene is recommended before donning gloves for patient care?",
+    "options": [
+      { "id": "a", "text": "Surgical hand scrub with brush" },
+      { "id": "b", "text": "Routine handwash with antimicrobial soap or alcohol-based hand rub" },
+      { "id": "c", "text": "Plain water rinse" },
+      { "id": "d", "text": "Hand hygiene is not required if gloves will be worn" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "A routine handwash with antimicrobial soap and water, or use of an alcohol-based hand rub, is recommended before donning gloves. Hand hygiene is always required before gloving.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 3"
+  }
+]

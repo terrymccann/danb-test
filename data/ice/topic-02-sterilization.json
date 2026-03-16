@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ice-0006",
+    "examType": "ice",
+    "topic": "Sterilization Procedures",
+    "stem": "The most common method of sterilization used in the dental office is:",
+    "options": [
+      { "id": "a", "text": "Dry heat sterilization" },
+      { "id": "b", "text": "Chemical vapor sterilization" },
+      { "id": "c", "text": "Steam autoclave sterilization" },
+      { "id": "d", "text": "Ethylene oxide sterilization" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Steam autoclaving (using pressurized steam at 250°F/121°C for 15-30 minutes) is the most widely used and recommended method of sterilization in the dental office.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 7"
+  },
+  {
+    "id": "ice-0007",
+    "examType": "ice",
+    "topic": "Sterilization Procedures",
+    "stem": "Biological monitoring (spore testing) of sterilizers should be performed at least:",
+    "options": [
+      { "id": "a", "text": "Daily" },
+      { "id": "b", "text": "Weekly" },
+      { "id": "c", "text": "Monthly" },
+      { "id": "d", "text": "Quarterly" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "The CDC recommends biological monitoring (spore testing) at least weekly to verify that the sterilizer is functioning properly. Some states require more frequent testing.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 7"
+  },
+  {
+    "id": "ice-0008",
+    "examType": "ice",
+    "topic": "Sterilization Procedures",
+    "stem": "Before instruments are placed in the sterilizer, they must first be:",
+    "options": [
+      { "id": "a", "text": "Rinsed with alcohol" },
+      { "id": "b", "text": "Cleaned and dried" },
+      { "id": "c", "text": "Soaked in glutaraldehyde" },
+      { "id": "d", "text": "Treated with a surface disinfectant" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Instruments must be thoroughly cleaned (manually or with an ultrasonic cleaner) and dried before sterilization. Debris left on instruments can prevent sterilization from occurring.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 7"
+  },
+  {
+    "id": "ice-0009",
+    "examType": "ice",
+    "topic": "Sterilization Procedures",
+    "stem": "Chemical indicators on sterilization packaging indicate that:",
+    "options": [
+      { "id": "a", "text": "The instruments inside are sterile" },
+      { "id": "b", "text": "The package was exposed to certain sterilization conditions" },
+      { "id": "c", "text": "The sterilizer is functioning properly" },
+      { "id": "d", "text": "The instruments do not need biological monitoring" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Chemical indicators (process indicators) only show that the package was exposed to certain conditions (e.g., heat). They do NOT confirm sterility — only biological indicators (spore tests) verify actual sterilization.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 7"
+  },
+  {
+    "id": "ice-0010",
+    "examType": "ice",
+    "topic": "Sterilization Procedures",
+    "stem": "An ultrasonic cleaner works by:",
+    "options": [
+      { "id": "a", "text": "Using high-frequency sound waves to create cavitation" },
+      { "id": "b", "text": "Producing steam under pressure" },
+      { "id": "c", "text": "Circulating chemical disinfectant at high speed" },
+      { "id": "d", "text": "Exposing instruments to ultraviolet light" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Ultrasonic cleaners use high-frequency sound waves to create microscopic bubbles (cavitation) that implode and loosen debris from instrument surfaces. This is safer and more effective than hand scrubbing.",
+    "source": "Infection Control and Management of Hazardous Materials, 7th Ed., Ch. 7"
+  }
+]
