@@ -154,15 +154,18 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-orthodontic",
             "Orthodontic Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-oral-surgery",
             "Oral Surgery Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
-          s("gc-pediatric", "Pediatric Dentistry", "gc", "Chairside Dentistry"),
+          s("gc-pediatric", "Pediatric Dentistry", "gc", "Chairside Dentistry",
+            true),
           s(
             "gc-anesthesia",
             "Anesthesia & Pain Management",
@@ -174,13 +177,15 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-dental-dam",
             "Dental Dam & Moisture Control",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-tray-setup",
             "Tray Setup & Procedural Sequencing",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
         ],
       },
@@ -208,7 +213,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-impressions",
             "Impression Materials & Gypsum",
             "gc",
-            "Dental Materials"
+            "Dental Materials",
+            true
           ),
           s(
             "gc-temporaries",
