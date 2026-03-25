@@ -510,13 +510,15 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-instrument-packaging",
             "Instrument Packaging & Storage",
             "ice",
-            "Process Instruments and Devices"
+            "Process Instruments and Devices",
+            true
           ),
           s(
             "ice-handpiece-processing",
             "Handpiece & Semicritical Device Processing",
             "ice",
-            "Process Instruments and Devices"
+            "Process Instruments and Devices",
+            true
           ),
         ],
       },
@@ -528,37 +530,43 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-osha-bbp",
             "OSHA Bloodborne Pathogens Standard",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
           s(
             "ice-exposure-incidents",
             "Exposure Incident Management",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
           s(
             "ice-hazcom",
             "Hazard Communication (HazCom/GHS)",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
           s(
             "ice-waste-management",
             "Waste Management & Regulated Medical Waste",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
           s(
             "ice-ergonomics",
             "Ergonomics & Injury Prevention",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
           s(
             "ice-recordkeeping",
             "Recordkeeping & Compliance Programs",
             "ice",
-            "Occupational Safety and Administration"
+            "Occupational Safety and Administration",
+            true
           ),
         ],
       },

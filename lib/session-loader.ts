@@ -60,6 +60,14 @@ import iceWaterlineManagement from "@/data/learn/ice-waterline-management.json"
 import iceSingleUse from "@/data/learn/ice-single-use.json"
 import iceLaboratoryAsepsis from "@/data/learn/ice-laboratory-asepsis.json"
 import iceRadiographyIc from "@/data/learn/ice-radiography-ic.json"
+import iceInstrumentPackaging from "@/data/learn/ice-instrument-packaging.json"
+import iceHandpieceProcessing from "@/data/learn/ice-handpiece-processing.json"
+import iceOshaBbp from "@/data/learn/ice-osha-bbp.json"
+import iceExposureIncidents from "@/data/learn/ice-exposure-incidents.json"
+import iceHazcom from "@/data/learn/ice-hazcom.json"
+import iceWasteManagement from "@/data/learn/ice-waste-management.json"
+import iceErgonomics from "@/data/learn/ice-ergonomics.json"
+import iceRecordkeeping from "@/data/learn/ice-recordkeeping.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -122,6 +130,14 @@ const sessions: Record<string, LearningSession> = {
   "ice-single-use": iceSingleUse as unknown as LearningSession,
   "ice-laboratory-asepsis": iceLaboratoryAsepsis as unknown as LearningSession,
   "ice-radiography-ic": iceRadiographyIc as unknown as LearningSession,
+  "ice-instrument-packaging": iceInstrumentPackaging as unknown as LearningSession,
+  "ice-handpiece-processing": iceHandpieceProcessing as unknown as LearningSession,
+  "ice-osha-bbp": iceOshaBbp as unknown as LearningSession,
+  "ice-exposure-incidents": iceExposureIncidents as unknown as LearningSession,
+  "ice-hazcom": iceHazcom as unknown as LearningSession,
+  "ice-waste-management": iceWasteManagement as unknown as LearningSession,
+  "ice-ergonomics": iceErgonomics as unknown as LearningSession,
+  "ice-recordkeeping": iceRecordkeeping as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {
