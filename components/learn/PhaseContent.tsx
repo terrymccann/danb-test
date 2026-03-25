@@ -7,8 +7,7 @@ export function PhaseContent() {
   const session = useLearnStore((s) => s.session)
   if (!session) return null
 
-  const { conceptTitle, conceptBody, diagram, scienceTags } =
-    session.phases.content
+  const { conceptTitle, conceptBody, diagram } = session.phases.content
 
   return (
     <div className="space-y-4">

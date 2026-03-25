@@ -20,7 +20,7 @@ interface DomainCardProps {
 export function DomainCard({ config }: DomainCardProps) {
   const totalSessions = config.subDomains.reduce(
     (sum, sub) => sum + sub.sessions.length,
-    0,
+    0
   )
 
   return (
@@ -42,9 +42,7 @@ export function DomainCard({ config }: DomainCardProps) {
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <FileText className="h-4 w-4" />
-            <span>
-              {config.subDomains.map((sub) => sub.name).join(" · ")}
-            </span>
+            <span>{config.subDomains.map((sub) => sub.name).join(" · ")}</span>
           </div>
         </div>
         <Link
