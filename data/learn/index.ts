@@ -34,7 +34,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-vital-signs",
             "Vital Signs & Baseline Measurements",
             "gc",
-            "Evaluation"
+            "Evaluation",
+            true
           ),
           s(
             "gc-medical-history",
