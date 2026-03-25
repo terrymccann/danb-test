@@ -133,19 +133,22 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-endodontic",
             "Endodontic Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-periodontic",
             "Periodontic Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-prosthodontic",
             "Prosthodontic Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-orthodontic",
@@ -164,7 +167,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-anesthesia",
             "Anesthesia & Pain Management",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-dental-dam",
@@ -307,7 +311,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-biological-effects",
             "Biological Effects of Radiation",
             "rhs",
-            "Radiation Characteristics and Protection"
+            "Radiation Characteristics and Protection",
+            true
           ),
           s(
             "rhs-dose-limits",
@@ -390,7 +395,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-vaccination",
             "Vaccination & Immunization Requirements",
             "ice",
-            "Prevention of Disease Transmission"
+            "Prevention of Disease Transmission",
+            true
           ),
         ],
       },

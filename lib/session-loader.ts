@@ -29,6 +29,12 @@ import gcPatientCommunication from "@/data/learn/gc-patient-communication.json"
 import rhsRadiationPhysics from "@/data/learn/rhs-radiation-physics.json"
 import iceSurfaceDisinfection from "@/data/learn/ice-surface-disinfection.json"
 import iceSterilizationMonitoring from "@/data/learn/ice-sterilization-monitoring.json"
+import gcEndodontic from "@/data/learn/gc-endodontic.json"
+import gcPeriodontic from "@/data/learn/gc-periodontic.json"
+import gcProsthodontic from "@/data/learn/gc-prosthodontic.json"
+import gcAnesthesia from "@/data/learn/gc-anesthesia.json"
+import rhsBiologicalEffects from "@/data/learn/rhs-biological-effects.json"
+import iceVaccination from "@/data/learn/ice-vaccination.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -60,6 +66,12 @@ const sessions: Record<string, LearningSession> = {
   "rhs-radiation-physics": rhsRadiationPhysics as unknown as LearningSession,
   "ice-surface-disinfection": iceSurfaceDisinfection as unknown as LearningSession,
   "ice-sterilization-monitoring": iceSterilizationMonitoring as unknown as LearningSession,
+  "gc-endodontic": gcEndodontic as unknown as LearningSession,
+  "gc-periodontic": gcPeriodontic as unknown as LearningSession,
+  "gc-prosthodontic": gcProsthodontic as unknown as LearningSession,
+  "gc-anesthesia": gcAnesthesia as unknown as LearningSession,
+  "rhs-biological-effects": rhsBiologicalEffects as unknown as LearningSession,
+  "ice-vaccination": iceVaccination as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {
