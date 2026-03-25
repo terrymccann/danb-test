@@ -1,5 +1,10 @@
+"use client";
+
 import { ExamCard } from "@/components/exam/ExamCard";
+import { LearnCard } from "@/components/learn/LearnCard";
 import { examConfigs } from "@/lib/exam-config";
+import { learningSessions } from "@/data/learn/index";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function HomePage() {
   return (
@@ -10,21 +15,44 @@ export default function HomePage() {
         </h1>
         <p className="mt-3 text-muted-foreground">
           Prepare for the Certified Dental Assistant exam with timed,
-          randomized practice tests across all three CDA components.
+          randomized practice tests and evidence-based learning sessions.
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Object.values(examConfigs).map((config) => (
-          <ExamCard key={config.type} config={config} />
-        ))}
-      </div>
+      <Tabs defaultValue="exams">
+        <div className="mb-6 flex justify-center">
+          <TabsList>
+            <TabsTrigger value="exams">Practice Exams</TabsTrigger>
+            <TabsTrigger value="learn">Learn</TabsTrigger>
+          </TabsList>
+        </div>
 
-      <p className="mt-8 text-center text-sm text-muted-foreground">
-        Each practice exam simulates real DANB CDA testing conditions with
-        randomized questions and a countdown timer. A score of 75% or higher
-        is considered passing.
-      </p>
+        <TabsContent value="exams">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.values(examConfigs).map((config) => (
+              <ExamCard key={config.type} config={config} />
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Each practice exam simulates real DANB CDA testing conditions with
+            randomized questions and a countdown timer. A score of 75% or higher
+            is considered passing.
+          </p>
+        </TabsContent>
+
+        <TabsContent value="learn">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {learningSessions.map((session) => (
+              <LearnCard key={session.id} session={session} />
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Each learning session uses evidence-based techniques — retrieval
+            practice, spaced repetition, interleaving, and elaborative
+            interrogation — to build deep understanding of a single topic.
+          </p>
+        </TabsContent>
+      </Tabs>
     </main>
   );
 }
