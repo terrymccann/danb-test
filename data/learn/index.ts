@@ -365,13 +365,15 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-infection-control-workflow",
             "Radiographic Infection Control Workflow",
             "rhs",
-            "Infection Prevention and Control — Radiology-Specific"
+            "Infection Prevention and Control — Radiology-Specific",
+            true
           ),
           s(
             "rhs-darkroom-asepsis",
             "Darkroom & Digital Sensor Asepsis",
             "rhs",
-            "Infection Prevention and Control — Radiology-Specific"
+            "Infection Prevention and Control — Radiology-Specific",
+            true
           ),
         ],
       },
@@ -432,31 +434,36 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-barrier-techniques",
             "Barrier Techniques for Clinical Surfaces",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
           s(
             "ice-waterline-management",
             "Dental Unit Waterline Management",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
           s(
             "ice-single-use",
             "Single-Use Items & Disposables",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
           s(
             "ice-laboratory-asepsis",
             "Laboratory Asepsis",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
           s(
             "ice-radiography-ic",
             "Radiography-Specific Infection Control",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
         ],
       },

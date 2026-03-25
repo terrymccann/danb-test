@@ -53,6 +53,13 @@ import rhsPatientPositioning from "@/data/learn/rhs-patient-positioning.json"
 import rhsProtectiveEquipment from "@/data/learn/rhs-protective-equipment.json"
 import rhsBarrierTechniques from "@/data/learn/rhs-barrier-techniques.json"
 import rhsEquipmentDisinfection from "@/data/learn/rhs-equipment-disinfection.json"
+import rhsInfectionControlWorkflow from "@/data/learn/rhs-infection-control-workflow.json"
+import rhsDarkroomAsepsis from "@/data/learn/rhs-darkroom-asepsis.json"
+import iceBarrierTechniques from "@/data/learn/ice-barrier-techniques.json"
+import iceWaterlineManagement from "@/data/learn/ice-waterline-management.json"
+import iceSingleUse from "@/data/learn/ice-single-use.json"
+import iceLaboratoryAsepsis from "@/data/learn/ice-laboratory-asepsis.json"
+import iceRadiographyIc from "@/data/learn/ice-radiography-ic.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -108,6 +115,13 @@ const sessions: Record<string, LearningSession> = {
   "rhs-protective-equipment": rhsProtectiveEquipment as unknown as LearningSession,
   "rhs-barrier-techniques": rhsBarrierTechniques as unknown as LearningSession,
   "rhs-equipment-disinfection": rhsEquipmentDisinfection as unknown as LearningSession,
+  "rhs-infection-control-workflow": rhsInfectionControlWorkflow as unknown as LearningSession,
+  "rhs-darkroom-asepsis": rhsDarkroomAsepsis as unknown as LearningSession,
+  "ice-barrier-techniques": iceBarrierTechniques as unknown as LearningSession,
+  "ice-waterline-management": iceWaterlineManagement as unknown as LearningSession,
+  "ice-single-use": iceSingleUse as unknown as LearningSession,
+  "ice-laboratory-asepsis": iceLaboratoryAsepsis as unknown as LearningSession,
+  "ice-radiography-ic": iceRadiographyIc as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {
