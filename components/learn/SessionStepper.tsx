@@ -103,11 +103,11 @@ export function SessionStepper() {
           {isLastPhase ? (
             <div className="flex gap-2">
               <Link
-                href="/"
+                href={`/learn/${session.domain}`}
                 className={buttonVariants({ variant: "outline" })}
                 onClick={reset}
               >
-                Back to Home
+                Back to Sessions
               </Link>
               <Button
                 onClick={() => {

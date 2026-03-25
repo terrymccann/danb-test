@@ -1,9 +1,9 @@
 "use client"
 
 import { ExamCard } from "@/components/exam/ExamCard"
-import { LearnCard } from "@/components/learn/LearnCard"
+import { DomainCard } from "@/components/learn/DomainCard"
 import { examConfigs } from "@/lib/exam-config"
-import { learningSessions } from "@/data/learn/index"
+import { domainConfigs } from "@/data/learn/index"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function HomePage() {
@@ -42,8 +42,8 @@ export default function HomePage() {
 
         <TabsContent value="learn">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {learningSessions.map((session) => (
-              <LearnCard key={session.id} session={session} />
+            {domainConfigs.map((config) => (
+              <DomainCard key={config.domain} config={config} />
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-muted-foreground">
