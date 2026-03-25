@@ -290,19 +290,22 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-anatomical-landmarks",
             "Anatomical Landmarks on Radiographs",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-exposure-settings",
             "Exposure Settings & Image Quality",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-patient-positioning",
             "Patient Positioning & Common Errors",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
         ],
       },
@@ -335,7 +338,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-protective-equipment",
             "Protective Equipment & Monitoring",
             "rhs",
-            "Radiation Characteristics and Protection"
+            "Radiation Characteristics and Protection",
+            true
           ),
         ],
       },
@@ -347,13 +351,15 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-barrier-techniques",
             "Barrier Techniques in Radiography",
             "rhs",
-            "Infection Prevention and Control — Radiology-Specific"
+            "Infection Prevention and Control — Radiology-Specific",
+            true
           ),
           s(
             "rhs-equipment-disinfection",
             "Equipment Disinfection & Sensor Handling",
             "rhs",
-            "Infection Prevention and Control — Radiology-Specific"
+            "Infection Prevention and Control — Radiology-Specific",
+            true
           ),
           s(
             "rhs-infection-control-workflow",

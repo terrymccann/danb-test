@@ -47,6 +47,12 @@ import rhsFilmProcessing from "@/data/learn/rhs-film-processing.json"
 import rhsImageEvaluation from "@/data/learn/rhs-image-evaluation.json"
 import rhsDoseLimits from "@/data/learn/rhs-dose-limits.json"
 import iceInstrumentCleaning from "@/data/learn/ice-instrument-cleaning.json"
+import rhsAnatomicalLandmarks from "@/data/learn/rhs-anatomical-landmarks.json"
+import rhsExposureSettings from "@/data/learn/rhs-exposure-settings.json"
+import rhsPatientPositioning from "@/data/learn/rhs-patient-positioning.json"
+import rhsProtectiveEquipment from "@/data/learn/rhs-protective-equipment.json"
+import rhsBarrierTechniques from "@/data/learn/rhs-barrier-techniques.json"
+import rhsEquipmentDisinfection from "@/data/learn/rhs-equipment-disinfection.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -96,6 +102,12 @@ const sessions: Record<string, LearningSession> = {
   "rhs-image-evaluation": rhsImageEvaluation as unknown as LearningSession,
   "rhs-dose-limits": rhsDoseLimits as unknown as LearningSession,
   "ice-instrument-cleaning": iceInstrumentCleaning as unknown as LearningSession,
+  "rhs-anatomical-landmarks": rhsAnatomicalLandmarks as unknown as LearningSession,
+  "rhs-exposure-settings": rhsExposureSettings as unknown as LearningSession,
+  "rhs-patient-positioning": rhsPatientPositioning as unknown as LearningSession,
+  "rhs-protective-equipment": rhsProtectiveEquipment as unknown as LearningSession,
+  "rhs-barrier-techniques": rhsBarrierTechniques as unknown as LearningSession,
+  "rhs-equipment-disinfection": rhsEquipmentDisinfection as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {
