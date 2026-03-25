@@ -6,7 +6,7 @@ import { ScienceTag } from "@/components/learn/ScienceTag"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Loader2 } from "lucide-react"
+import { Loader2, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function PhaseTeachBack() {
@@ -15,6 +15,7 @@ export function PhaseTeachBack() {
   const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
   const teachBackLoading = useLearnStore((s) => s.teachBackLoading)
   const teachBackSubmitted = useLearnStore((s) => s.teachBackSubmitted)
+  const teachBackFailed = useLearnStore((s) => s.teachBackFailed)
   const setTeachBackResponse = useLearnStore((s) => s.setTeachBackResponse)
   const submitTeachBack = useLearnStore((s) => s.submitTeachBack)
   const nextPhase = useLearnStore((s) => s.nextPhase)
@@ -23,6 +24,8 @@ export function PhaseTeachBack() {
   const { prompt, modelAnswer } = session.phases.teachBack
   const hasResponse = teachBackResponse.trim().length > 0
   const hasEvaluation = teachBackEvaluation !== null
+  const showModelAnswer =
+    hasEvaluation || (teachBackSubmitted && !teachBackLoading)
 
   return (
     <div className="space-y-4">
@@ -48,11 +51,11 @@ export function PhaseTeachBack() {
         value={teachBackResponse}
         onChange={(e) => setTeachBackResponse(e.target.value)}
         placeholder="Type your explanation here..."
-        disabled={hasEvaluation}
+        disabled={hasEvaluation || teachBackFailed}
         className="min-h-[120px] w-full resize-y rounded-md border bg-background p-3 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none disabled:opacity-50"
       />
 
-      {!hasEvaluation && !teachBackLoading && (
+      {!hasEvaluation && !teachBackLoading && !teachBackFailed && (
         <div className="flex items-center gap-3">
           <Button onClick={submitTeachBack} disabled={!hasResponse}>
             Submit for AI evaluation
@@ -82,6 +85,14 @@ export function PhaseTeachBack() {
           >
             Skip evaluation
           </button>
+        </div>
+      )}
+
+      {teachBackFailed && !hasEvaluation && (
+        <div className="flex items-center gap-2 rounded-md border-l-3 border-amber-500 bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-100">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          AI evaluation unavailable. Compare your response to the model answer
+          below.
         </div>
       )}
 
@@ -128,7 +139,7 @@ export function PhaseTeachBack() {
         </div>
       )}
 
-      {(hasEvaluation || (teachBackSubmitted && !teachBackLoading)) && (
+      {showModelAnswer && (
         <div className="rounded-md bg-muted p-4 text-sm leading-relaxed">
           <strong>Model answer:</strong>
           <br />

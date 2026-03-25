@@ -37,6 +37,7 @@ interface LearnState {
   teachBackEvaluation: TeachBackEvaluation | null
   teachBackLoading: boolean
   teachBackSubmitted: boolean
+  teachBackFailed: boolean
 
   startSession: (session: LearningSession) => void
   goToPhase: (phase: PhaseKey) => void
@@ -77,6 +78,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
   teachBackEvaluation: null,
   teachBackLoading: false,
   teachBackSubmitted: false,
+  teachBackFailed: false,
 
   startSession: (session) => {
     set({
@@ -95,6 +97,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       teachBackEvaluation: null,
       teachBackLoading: false,
       teachBackSubmitted: false,
+      teachBackFailed: false,
     })
   },
 
@@ -217,7 +220,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       )
       set({ teachBackEvaluation: evaluation, teachBackLoading: false })
     } catch {
-      set({ teachBackLoading: false })
+      set({ teachBackLoading: false, teachBackFailed: true })
     }
   },
 
@@ -238,6 +241,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       teachBackEvaluation: null,
       teachBackLoading: false,
       teachBackSubmitted: false,
+      teachBackFailed: false,
     })
   },
 }))

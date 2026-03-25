@@ -38,14 +38,19 @@ export async function POST(request: Request) {
     const message = await client.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 512,
-      system: `You are a dental assisting instructor evaluating a student's explanation of a clinical concept. The topic is "${sessionTopic}". Evaluate the student's response against the model answer for factual accuracy and completeness. Be encouraging but honest. Respond ONLY with valid JSON in this exact format:
-{
-  "accuracy": "good" | "partial" | "missed",
-  "completeness": <number 0-100>,
-  "feedback": "<2-3 sentences of natural language feedback>",
-  "missedConcepts": ["<concept 1>", "<concept 2>"]
-}
-Where accuracy is "good" if factually correct and covers key points, "partial" if mostly correct but missing important details, "missed" if fundamentally wrong or missing the core concept. missedConcepts should list specific key points from the model answer that the student did not cover. If nothing was missed, use an empty array.`,
+      system: `You are a dental assisting instructor evaluating a student's explanation of a clinical concept. The topic is "${sessionTopic}".
+
+Evaluate the student's response against the model answer for factual accuracy and completeness. Be encouraging but honest. Your feedback should clearly explain what the student got right, what they got wrong, and what key concepts they missed.
+
+Respond ONLY with valid JSON matching this exact structure (no markdown, no code fences):
+
+{"accuracy":"good","completeness":85,"feedback":"Your explanation was clear and accurate...","missedConcepts":[]}
+
+Rules for the fields:
+- accuracy: Use "good" if factually correct and covers the key points. Use "partial" if mostly correct but missing important details. Use "missed" if fundamentally wrong or missing the core concept.
+- completeness: A number from 0 to 100 indicating how much of the model answer's content was covered.
+- feedback: 2-3 sentences explaining what the student did well and what they could improve. Be specific about which concepts were correct and which were missing or wrong.
+- missedConcepts: An array of strings listing specific key points from the model answer that the student did not cover. Use an empty array if nothing was missed.`,
       messages: [
         {
           role: "user",
@@ -62,10 +67,21 @@ Evaluate the student's response.`,
 
     const text =
       message.content[0].type === "text" ? message.content[0].text : ""
-    const evaluation = JSON.parse(text)
+
+    let evaluation
+    try {
+      evaluation = JSON.parse(text)
+    } catch {
+      console.error("Failed to parse AI response:", text)
+      return NextResponse.json(
+        { error: "Invalid AI response format" },
+        { status: 502 }
+      )
+    }
 
     return NextResponse.json(evaluation)
-  } catch {
+  } catch (error) {
+    console.error("Teach-back evaluation error:", error)
     return NextResponse.json({ error: "Evaluation failed" }, { status: 500 })
   }
 }
