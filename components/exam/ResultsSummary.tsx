@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   CheckCircle2,
@@ -6,26 +6,26 @@ import {
   Clock,
   BarChart3,
   ChevronDown,
-} from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
-import { PASS_THRESHOLD } from "@/lib/exam-config";
-import { ExamResult, Question } from "@/types/exam";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+} from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Separator } from "@/components/ui/separator"
+import { PASS_THRESHOLD } from "@/lib/exam-config"
+import { ExamResult, Question } from "@/types/exam"
+import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 interface ResultsSummaryProps {
-  result: ExamResult;
-  questions: Question[];
-  answers: Record<string, string>;
+  result: ExamResult
+  questions: Question[]
+  answers: Record<string, string>
 }
 
 function formatTime(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m}:${s.toString().padStart(2, "0")}`;
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return `${m}:${s.toString().padStart(2, "0")}`
 }
 
 export function ResultsSummary({
@@ -33,7 +33,7 @@ export function ResultsSummary({
   questions,
   answers,
 }: ResultsSummaryProps) {
-  const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
+  const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null)
 
   return (
     <div className="space-y-6">
@@ -46,7 +46,7 @@ export function ResultsSummary({
                 "flex h-20 w-20 items-center justify-center rounded-full",
                 result.passed
                   ? "bg-green-500/10 text-green-600 dark:text-green-400"
-                  : "bg-destructive/10 text-destructive",
+                  : "bg-destructive/10 text-destructive"
               )}
             >
               {result.passed ? (
@@ -103,7 +103,7 @@ export function ResultsSummary({
                   "h-2",
                   topic.percentage >= PASS_THRESHOLD * 100
                     ? "[&>[data-slot=indicator]]:bg-green-500"
-                    : "[&>[data-slot=indicator]]:bg-destructive",
+                    : "[&>[data-slot=indicator]]:bg-destructive"
                 )}
               />
             </div>
@@ -117,92 +117,91 @@ export function ResultsSummary({
           <CardTitle className="text-lg">Question Review</CardTitle>
         </CardHeader>
         <CardContent>
-            <div className="space-y-3">
-              {questions.map((question, index) => {
-                const selectedId = answers[question.id] ?? null;
-                const isCorrect = selectedId === question.correctOptionId;
-                const isExpanded = expandedQuestion === question.id;
+          <div className="space-y-3">
+            {questions.map((question, index) => {
+              const selectedId = answers[question.id] ?? null
+              const isCorrect = selectedId === question.correctOptionId
+              const isExpanded = expandedQuestion === question.id
 
-                return (
-                  <div
-                    key={question.id}
-                    className={cn(
-                      "rounded-lg border p-4",
-                      isCorrect
-                        ? "border-green-200 dark:border-green-900"
-                        : "border-destructive/30",
-                    )}
+              return (
+                <div
+                  key={question.id}
+                  className={cn(
+                    "rounded-lg border p-4",
+                    isCorrect
+                      ? "border-green-200 dark:border-green-900"
+                      : "border-destructive/30"
+                  )}
+                >
+                  <button
+                    onClick={() =>
+                      setExpandedQuestion(isExpanded ? null : question.id)
+                    }
+                    className="flex w-full items-start justify-between gap-2 text-left"
                   >
-                    <button
-                      onClick={() =>
-                        setExpandedQuestion(isExpanded ? null : question.id)
-                      }
-                      className="flex w-full items-start justify-between gap-2 text-left"
-                    >
-                      <div className="flex items-start gap-2">
-                        {isCorrect ? (
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
-                        ) : (
-                          <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
-                        )}
-                        <span className="text-sm">
-                          <span className="font-medium">Q{index + 1}.</span>{" "}
-                          {question.stem}
-                        </span>
-                      </div>
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 shrink-0 text-muted-foreground transition-transform",
-                          isExpanded && "rotate-180",
-                        )}
-                      />
-                    </button>
+                    <div className="flex items-start gap-2">
+                      {isCorrect ? (
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
+                      ) : (
+                        <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                      )}
+                      <span className="text-sm">
+                        <span className="font-medium">Q{index + 1}.</span>{" "}
+                        {question.stem}
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className={cn(
+                        "h-4 w-4 shrink-0 text-muted-foreground transition-transform",
+                        isExpanded && "rotate-180"
+                      )}
+                    />
+                  </button>
 
-                    {isExpanded && (
-                      <div className="mt-3 space-y-2 pl-6">
-                        {question.options.map((option) => {
-                          const isSelected = option.id === selectedId;
-                          const isAnswer =
-                            option.id === question.correctOptionId;
+                  {isExpanded && (
+                    <div className="mt-3 space-y-2 pl-6">
+                      {question.options.map((option) => {
+                        const isSelected = option.id === selectedId
+                        const isAnswer = option.id === question.correctOptionId
 
-                          return (
-                            <div
-                              key={option.id}
-                              className={cn(
-                                "rounded-md px-3 py-2 text-sm",
-                                isAnswer &&
-                                  "bg-green-500/10 font-medium text-green-700 dark:text-green-300",
-                                isSelected &&
-                                  !isAnswer &&
-                                  "bg-destructive/10 text-destructive line-through",
+                        return (
+                          <div
+                            key={option.id}
+                            className={cn(
+                              "rounded-md px-3 py-2 text-sm",
+                              isAnswer &&
+                                "bg-green-500/10 font-medium text-green-700 dark:text-green-300",
+                              isSelected &&
                                 !isAnswer &&
-                                  !isSelected &&
-                                  "text-muted-foreground",
-                              )}
-                            >
-                              {option.text}
-                              {isAnswer && " (correct)"}
-                              {isSelected && !isAnswer && " (your answer)"}
-                            </div>
-                          );
-                        })}
-                        <Separator className="my-2" />
-                        <p className="text-sm text-muted-foreground">
-                          {question.explanation}
+                                "bg-destructive/10 text-destructive line-through",
+                              !isAnswer &&
+                                !isSelected &&
+                                "text-muted-foreground"
+                            )}
+                          >
+                            {option.text}
+                            {isAnswer && " (correct)"}
+                            {isSelected && !isAnswer && " (your answer)"}
+                          </div>
+                        )
+                      })}
+                      <Separator className="my-2" />
+                      <p className="text-sm text-muted-foreground">
+                        {question.explanation}
+                      </p>
+                      {question.source && (
+                        <p className="text-xs text-muted-foreground/70">
+                          Source: {question.source}
                         </p>
-                        {question.source && (
-                          <p className="text-xs text-muted-foreground/70">
-                            Source: {question.source}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

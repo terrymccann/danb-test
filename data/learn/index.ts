@@ -1,4 +1,4 @@
-import type { SessionMeta } from "@/types/learn";
+import type { SessionMeta } from "@/types/learn"
 
 export const learningSessions: SessionMeta[] = [
   {
@@ -14,4 +14,4 @@ export const learningSessions: SessionMeta[] = [
       "Spaced repetition",
     ],
   },
-];
+]

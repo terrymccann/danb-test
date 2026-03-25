@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { Flag } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { useExamStore } from "@/stores/exam-store";
-import { cn } from "@/lib/utils";
+import { Flag } from "lucide-react"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { useExamStore } from "@/stores/exam-store"
+import { cn } from "@/lib/utils"
 
 export function QuestionDisplay() {
-  const questions = useExamStore((s) => s.questions);
-  const currentIndex = useExamStore((s) => s.currentIndex);
-  const answers = useExamStore((s) => s.answers);
-  const flagged = useExamStore((s) => s.flagged);
-  const selectAnswer = useExamStore((s) => s.selectAnswer);
-  const toggleFlag = useExamStore((s) => s.toggleFlag);
+  const questions = useExamStore((s) => s.questions)
+  const currentIndex = useExamStore((s) => s.currentIndex)
+  const answers = useExamStore((s) => s.answers)
+  const flagged = useExamStore((s) => s.flagged)
+  const selectAnswer = useExamStore((s) => s.selectAnswer)
+  const toggleFlag = useExamStore((s) => s.toggleFlag)
 
-  const question = questions[currentIndex];
-  if (!question) return null;
+  const question = questions[currentIndex]
+  if (!question) return null
 
-  const selectedOption = answers[question.id] ?? "";
-  const isFlagged = flagged.has(question.id);
+  const selectedOption = answers[question.id] ?? ""
+  const isFlagged = flagged.has(question.id)
 
   return (
     <div className="space-y-6">
@@ -27,7 +27,7 @@ export function QuestionDisplay() {
         <p className="text-sm text-muted-foreground">
           Question {currentIndex + 1} of {questions.length}
         </p>
-        <p className="text-lg font-medium leading-relaxed">{question.stem}</p>
+        <p className="text-lg leading-relaxed font-medium">{question.stem}</p>
       </div>
 
       <RadioGroup
@@ -42,7 +42,7 @@ export function QuestionDisplay() {
               "flex items-start gap-3 rounded-lg border p-4 transition-colors",
               selectedOption === option.id
                 ? "border-primary bg-primary/5"
-                : "hover:bg-muted/50",
+                : "hover:bg-muted/50"
             )}
           >
             <RadioGroupItem
@@ -70,5 +70,5 @@ export function QuestionDisplay() {
         {isFlagged ? "Flagged for Review" : "Flag for Review"}
       </Button>
     </div>
-  );
+  )
 }

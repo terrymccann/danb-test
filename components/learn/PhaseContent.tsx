@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { useLearnStore } from "@/stores/learn-store";
-import { PhaseBadge } from "@/components/learn/PhaseBadge";
-import { ScienceTag } from "@/components/learn/ScienceTag";
+import { useLearnStore } from "@/stores/learn-store"
+import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { ScienceTag } from "@/components/learn/ScienceTag"
 
 export function PhaseContent() {
-  const session = useLearnStore((s) => s.session);
-  if (!session) return null;
+  const session = useLearnStore((s) => s.session)
+  if (!session) return null
 
   const { conceptTitle, conceptBody, diagram, scienceTags } =
-    session.phases.content;
+    session.phases.content
 
   return (
     <div className="space-y-4">
@@ -22,8 +22,9 @@ export function PhaseContent() {
         <strong className="text-foreground">
           exactly one concept per screen
         </strong>
-        , respecting working memory limits of 4±1 items. Visuals and text together
-        (dual coding) strengthen encoding through two separate memory channels.
+        , respecting working memory limits of 4±1 items. Visuals and text
+        together (dual coding) strengthen encoding through two separate memory
+        channels.
       </p>
       <div className="flex gap-2">
         {scienceTags.map((tag) => (
@@ -32,10 +33,7 @@ export function PhaseContent() {
       </div>
 
       {diagram && (
-        <div
-          className="my-4"
-          dangerouslySetInnerHTML={{ __html: diagram }}
-        />
+        <div className="my-4" dangerouslySetInnerHTML={{ __html: diagram }} />
       )}
 
       <div
@@ -43,5 +41,5 @@ export function PhaseContent() {
         dangerouslySetInnerHTML={{ __html: conceptBody }}
       />
     </div>
-  );
+  )
 }

@@ -1,38 +1,38 @@
-import { NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { NextResponse } from "next/server"
+import Anthropic from "@anthropic-ai/sdk"
 
 export async function POST(request: Request) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json(
       { error: "API key not configured" },
-      { status: 503 },
-    );
+      { status: 503 }
+    )
   }
 
   let body: {
-    userResponse: string;
-    prompt: string;
-    modelAnswer: string;
-    sessionTopic: string;
-  };
-
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    userResponse: string
+    prompt: string
+    modelAnswer: string
+    sessionTopic: string
   }
 
-  const { userResponse, prompt, modelAnswer, sessionTopic } = body;
+  try {
+    body = await request.json()
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 })
+  }
+
+  const { userResponse, prompt, modelAnswer, sessionTopic } = body
 
   if (!userResponse || !prompt || !modelAnswer || !sessionTopic) {
     return NextResponse.json(
       { error: "Missing required fields" },
-      { status: 400 },
-    );
+      { status: 400 }
+    )
   }
 
-  const client = new Anthropic({ apiKey });
+  const client = new Anthropic({ apiKey })
 
   try {
     const message = await client.messages.create({
@@ -58,17 +58,14 @@ Student's response: "${userResponse}"
 Evaluate the student's response.`,
         },
       ],
-    });
+    })
 
     const text =
-      message.content[0].type === "text" ? message.content[0].text : "";
-    const evaluation = JSON.parse(text);
+      message.content[0].type === "text" ? message.content[0].text : ""
+    const evaluation = JSON.parse(text)
 
-    return NextResponse.json(evaluation);
+    return NextResponse.json(evaluation)
   } catch {
-    return NextResponse.json(
-      { error: "Evaluation failed" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Evaluation failed" }, { status: 500 })
   }
 }

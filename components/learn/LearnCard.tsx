@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { Clock, BookOpen } from "lucide-react";
+import Link from "next/link"
+import { Clock, BookOpen } from "lucide-react"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { ScienceTag } from "@/components/learn/ScienceTag";
-import type { SessionMeta } from "@/types/learn";
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import { ScienceTag } from "@/components/learn/ScienceTag"
+import type { SessionMeta } from "@/types/learn"
 
 interface LearnCardProps {
-  session: SessionMeta;
+  session: SessionMeta
 }
 
 export function LearnCard({ session }: LearnCardProps) {
-  const domainLabels = { gc: "GC", rhs: "RHS", ice: "ICE" } as const;
+  const domainLabels = { gc: "GC", rhs: "RHS", ice: "ICE" } as const
 
   return (
     <Card className="flex flex-col">
@@ -56,5 +56,5 @@ export function LearnCard({ session }: LearnCardProps) {
         </Link>
       </CardContent>
     </Card>
-  );
+  )
 }

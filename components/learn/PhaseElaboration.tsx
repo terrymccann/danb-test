@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useLearnStore } from "@/stores/learn-store";
-import { PhaseBadge } from "@/components/learn/PhaseBadge";
-import { ScienceTag } from "@/components/learn/ScienceTag";
-import { Button } from "@/components/ui/button";
+import { useLearnStore } from "@/stores/learn-store"
+import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { ScienceTag } from "@/components/learn/ScienceTag"
+import { Button } from "@/components/ui/button"
 
 export function PhaseElaboration() {
-  const session = useLearnStore((s) => s.session);
-  const elaborationRevealed = useLearnStore((s) => s.elaborationRevealed);
-  const revealElaboration = useLearnStore((s) => s.revealElaboration);
+  const session = useLearnStore((s) => s.session)
+  const elaborationRevealed = useLearnStore((s) => s.elaborationRevealed)
+  const revealElaboration = useLearnStore((s) => s.revealElaboration)
 
-  if (!session) return null;
-  const { prompt, expertReasoning } = session.phases.elaboration;
+  if (!session) return null
+  const { prompt, expertReasoning } = session.phases.elaboration
 
   return (
     <div className="space-y-4">
@@ -21,9 +21,9 @@ export function PhaseElaboration() {
       </h2>
       <p className="text-sm leading-relaxed text-muted-foreground">
         Instead of moving on, the platform forces you to think about{" "}
-        <strong className="text-foreground">why</strong> the classification works
-        this way. This technique produces effect sizes of d = 0.54–0.69 — comparable
-        to hiring a private tutor.
+        <strong className="text-foreground">why</strong> the classification
+        works this way. This technique produces effect sizes of d = 0.54–0.69 —
+        comparable to hiring a private tutor.
       </p>
       <div className="flex gap-2">
         <ScienceTag label="Elaborative interrogation" />
@@ -46,5 +46,5 @@ export function PhaseElaboration() {
         />
       )}
     </div>
-  );
+  )
 }

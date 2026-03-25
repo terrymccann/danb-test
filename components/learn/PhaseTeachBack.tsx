@@ -1,34 +1,32 @@
-"use client";
+"use client"
 
-import { useLearnStore } from "@/stores/learn-store";
-import { PhaseBadge } from "@/components/learn/PhaseBadge";
-import { ScienceTag } from "@/components/learn/ScienceTag";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Loader2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useLearnStore } from "@/stores/learn-store"
+import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { ScienceTag } from "@/components/learn/ScienceTag"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export function PhaseTeachBack() {
-  const session = useLearnStore((s) => s.session);
-  const teachBackResponse = useLearnStore((s) => s.teachBackResponse);
-  const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation);
-  const teachBackLoading = useLearnStore((s) => s.teachBackLoading);
-  const setTeachBackResponse = useLearnStore((s) => s.setTeachBackResponse);
-  const submitTeachBack = useLearnStore((s) => s.submitTeachBack);
-  const nextPhase = useLearnStore((s) => s.nextPhase);
+  const session = useLearnStore((s) => s.session)
+  const teachBackResponse = useLearnStore((s) => s.teachBackResponse)
+  const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
+  const teachBackLoading = useLearnStore((s) => s.teachBackLoading)
+  const setTeachBackResponse = useLearnStore((s) => s.setTeachBackResponse)
+  const submitTeachBack = useLearnStore((s) => s.submitTeachBack)
+  const nextPhase = useLearnStore((s) => s.nextPhase)
 
-  if (!session) return null;
-  const { prompt, modelAnswer } = session.phases.teachBack;
-  const hasResponse = teachBackResponse.trim().length > 0;
-  const submitted = teachBackEvaluation !== null;
+  if (!session) return null
+  const { prompt, modelAnswer } = session.phases.teachBack
+  const hasResponse = teachBackResponse.trim().length > 0
+  const submitted = teachBackEvaluation !== null
 
   return (
     <div className="space-y-4">
       <PhaseBadge phase="teachBack" />
-      <h2 className="text-lg font-medium">
-        Teach-back: the Feynman technique
-      </h2>
+      <h2 className="text-lg font-medium">Teach-back: the Feynman technique</h2>
       <p className="text-sm leading-relaxed text-muted-foreground">
         Explaining concepts to others produces an effect size of g = 0.55 — you
         learn more by teaching than by restudying.
@@ -50,7 +48,7 @@ export function PhaseTeachBack() {
         onChange={(e) => setTeachBackResponse(e.target.value)}
         placeholder="Type your explanation here..."
         disabled={submitted}
-        className="min-h-[120px] w-full resize-y rounded-md border bg-background p-3 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
+        className="min-h-[120px] w-full resize-y rounded-md border bg-background p-3 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none disabled:opacity-50"
       />
 
       {!submitted && !teachBackLoading && (
@@ -96,14 +94,17 @@ export function PhaseTeachBack() {
                 teachBackEvaluation.accuracy === "partial" &&
                   "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
                 teachBackEvaluation.accuracy === "missed" &&
-                  "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+                  "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
               )}
             >
               {teachBackEvaluation.accuracy === "good" && "Good"}
               {teachBackEvaluation.accuracy === "partial" && "Partial"}
               {teachBackEvaluation.accuracy === "missed" && "Needs work"}
             </Badge>
-            <Progress value={teachBackEvaluation.completeness} className="flex-1" />
+            <Progress
+              value={teachBackEvaluation.completeness}
+              className="flex-1"
+            />
             <span className="text-xs text-muted-foreground">
               {teachBackEvaluation.completeness}%
             </span>
@@ -135,5 +136,5 @@ export function PhaseTeachBack() {
         </div>
       )}
     </div>
-  );
+  )
 }

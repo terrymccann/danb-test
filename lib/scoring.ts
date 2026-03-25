@@ -1,30 +1,30 @@
-import { PASS_THRESHOLD } from "@/lib/exam-config";
-import { ExamResult, ExamType, Question, TopicScore } from "@/types/exam";
+import { PASS_THRESHOLD } from "@/lib/exam-config"
+import { ExamResult, ExamType, Question, TopicScore } from "@/types/exam"
 
 export function calculateResults(
   examType: ExamType,
   questions: Question[],
   answers: Map<string, string>,
   timeUsedSeconds: number,
-  timeLimitSeconds: number,
+  timeLimitSeconds: number
 ): ExamResult {
-  let correctAnswers = 0;
-  const topicMap = new Map<string, { correct: number; total: number }>();
+  let correctAnswers = 0
+  const topicMap = new Map<string, { correct: number; total: number }>()
 
   for (const question of questions) {
-    const selectedOptionId = answers.get(question.id) ?? null;
-    const isCorrect = selectedOptionId === question.correctOptionId;
+    const selectedOptionId = answers.get(question.id) ?? null
+    const isCorrect = selectedOptionId === question.correctOptionId
 
-    if (isCorrect) correctAnswers++;
+    if (isCorrect) correctAnswers++
 
-    const topic = topicMap.get(question.topic) ?? { correct: 0, total: 0 };
-    topic.total++;
-    if (isCorrect) topic.correct++;
-    topicMap.set(question.topic, topic);
+    const topic = topicMap.get(question.topic) ?? { correct: 0, total: 0 }
+    topic.total++
+    if (isCorrect) topic.correct++
+    topicMap.set(question.topic, topic)
   }
 
   const percentage =
-    questions.length > 0 ? (correctAnswers / questions.length) * 100 : 0;
+    questions.length > 0 ? (correctAnswers / questions.length) * 100 : 0
 
   const topicScores: TopicScore[] = Array.from(topicMap.entries()).map(
     ([topic, { correct, total }]) => ({
@@ -32,8 +32,8 @@ export function calculateResults(
       correct,
       total,
       percentage: total > 0 ? (correct / total) * 100 : 0,
-    }),
-  );
+    })
+  )
 
   return {
     examType,
@@ -44,5 +44,5 @@ export function calculateResults(
     timeUsedSeconds,
     timeLimitSeconds,
     topicScores,
-  };
+  }
 }

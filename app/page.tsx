@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { ExamCard } from "@/components/exam/ExamCard";
-import { LearnCard } from "@/components/learn/LearnCard";
-import { examConfigs } from "@/lib/exam-config";
-import { learningSessions } from "@/data/learn/index";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExamCard } from "@/components/exam/ExamCard"
+import { LearnCard } from "@/components/learn/LearnCard"
+import { examConfigs } from "@/lib/exam-config"
+import { learningSessions } from "@/data/learn/index"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function HomePage() {
   return (
@@ -14,8 +14,8 @@ export default function HomePage() {
           DANB CDA Practice Exams
         </h1>
         <p className="mt-3 text-muted-foreground">
-          Prepare for the Certified Dental Assistant exam with timed,
-          randomized practice tests and evidence-based learning sessions.
+          Prepare for the Certified Dental Assistant exam with timed, randomized
+          practice tests and evidence-based learning sessions.
         </p>
       </div>
 
@@ -54,5 +54,5 @@ export default function HomePage() {
         </TabsContent>
       </Tabs>
     </main>
-  );
+  )
 }

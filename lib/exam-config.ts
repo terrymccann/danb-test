@@ -1,6 +1,6 @@
-import { ExamConfig } from "@/types/exam";
+import { ExamConfig } from "@/types/exam"
 
-export const PASS_THRESHOLD = 0.75;
+export const PASS_THRESHOLD = 0.75
 
 export const examConfigs: Record<string, ExamConfig> = {
   gc: {
@@ -54,8 +54,8 @@ export const examConfigs: Record<string, ExamConfig> = {
       "Regulatory Compliance",
     ],
   },
-};
+}
 
 export function getExamConfig(type: string): ExamConfig | undefined {
-  return examConfigs[type];
+  return examConfigs[type]
 }

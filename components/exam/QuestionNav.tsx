@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight, Send } from "lucide-react";
+import { useRouter } from "next/navigation"
+import { ChevronLeft, ChevronRight, Send } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,29 +12,29 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { useExamStore } from "@/stores/exam-store";
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+import { useExamStore } from "@/stores/exam-store"
 
 export function QuestionNav() {
-  const router = useRouter();
-  const currentIndex = useExamStore((s) => s.currentIndex);
-  const questions = useExamStore((s) => s.questions);
-  const answers = useExamStore((s) => s.answers);
-  const examType = useExamStore((s) => s.examType);
-  const nextQuestion = useExamStore((s) => s.nextQuestion);
-  const prevQuestion = useExamStore((s) => s.prevQuestion);
-  const submitExam = useExamStore((s) => s.submitExam);
+  const router = useRouter()
+  const currentIndex = useExamStore((s) => s.currentIndex)
+  const questions = useExamStore((s) => s.questions)
+  const answers = useExamStore((s) => s.answers)
+  const examType = useExamStore((s) => s.examType)
+  const nextQuestion = useExamStore((s) => s.nextQuestion)
+  const prevQuestion = useExamStore((s) => s.prevQuestion)
+  const submitExam = useExamStore((s) => s.submitExam)
 
-  const isFirst = currentIndex === 0;
-  const isLast = currentIndex === questions.length - 1;
-  const answeredCount = Object.keys(answers).length;
-  const unansweredCount = questions.length - answeredCount;
+  const isFirst = currentIndex === 0
+  const isLast = currentIndex === questions.length - 1
+  const answeredCount = Object.keys(answers).length
+  const unansweredCount = questions.length - answeredCount
 
   const handleSubmit = () => {
-    submitExam();
-    router.push(`/exam/${examType}/results`);
-  };
+    submitExam()
+    router.push(`/exam/${examType}/results`)
+  }
 
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -60,7 +60,9 @@ export function QuestionNav() {
       </div>
 
       <AlertDialog>
-        <AlertDialogTrigger render={<Button variant="default" className="gap-2" />}>
+        <AlertDialogTrigger
+          render={<Button variant="default" className="gap-2" />}
+        >
           <Send className="h-4 w-4" />
           Submit Exam
         </AlertDialogTrigger>
@@ -92,5 +94,5 @@ export function QuestionNav() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  );
+  )
 }

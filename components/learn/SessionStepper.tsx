@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { useLearnStore, PHASE_ORDER } from "@/stores/learn-store";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { PhasePreTest } from "@/components/learn/PhasePreTest";
-import { PhaseContent } from "@/components/learn/PhaseContent";
-import { PhaseElaboration } from "@/components/learn/PhaseElaboration";
-import { PhaseScenario } from "@/components/learn/PhaseScenario";
-import { PhaseInterleaved } from "@/components/learn/PhaseInterleaved";
-import { PhaseTeachBack } from "@/components/learn/PhaseTeachBack";
-import { PhaseSRS } from "@/components/learn/PhaseSRS";
-import type { PhaseKey } from "@/types/learn";
-import Link from "next/link";
+import { useLearnStore, PHASE_ORDER } from "@/stores/learn-store"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { PhasePreTest } from "@/components/learn/PhasePreTest"
+import { PhaseContent } from "@/components/learn/PhaseContent"
+import { PhaseElaboration } from "@/components/learn/PhaseElaboration"
+import { PhaseScenario } from "@/components/learn/PhaseScenario"
+import { PhaseInterleaved } from "@/components/learn/PhaseInterleaved"
+import { PhaseTeachBack } from "@/components/learn/PhaseTeachBack"
+import { PhaseSRS } from "@/components/learn/PhaseSRS"
+import type { PhaseKey } from "@/types/learn"
+import Link from "next/link"
 
 const PHASE_COMPONENTS: Record<PhaseKey, React.ComponentType> = {
   preTest: PhasePreTest,
@@ -20,7 +20,7 @@ const PHASE_COMPONENTS: Record<PhaseKey, React.ComponentType> = {
   interleaved: PhaseInterleaved,
   teachBack: PhaseTeachBack,
   srsSchedule: PhaseSRS,
-};
+}
 
 const NEXT_LABELS: Record<PhaseKey, string> = {
   preTest: "Continue to teaching phase",
@@ -30,23 +30,25 @@ const NEXT_LABELS: Record<PhaseKey, string> = {
   interleaved: "Continue to teach-back",
   teachBack: "Continue to SRS scheduling",
   srsSchedule: "",
-};
+}
 
 export function SessionStepper() {
-  const session = useLearnStore((s) => s.session);
-  const currentPhase = useLearnStore((s) => s.currentPhase);
-  const phaseIndex = useLearnStore((s) => s.phaseIndex);
-  const canAdvance = useLearnStore((s) => s.canAdvance);
-  const nextPhase = useLearnStore((s) => s.nextPhase);
-  const prevPhase = useLearnStore((s) => s.prevPhase);
-  const reset = useLearnStore((s) => s.reset);
+  const session = useLearnStore((s) => s.session)
+  const currentPhase = useLearnStore((s) => s.currentPhase)
+  const phaseIndex = useLearnStore((s) => s.phaseIndex)
+  const canAdvance = useLearnStore((s) => s.canAdvance)
+  const nextPhase = useLearnStore((s) => s.nextPhase)
+  const prevPhase = useLearnStore((s) => s.prevPhase)
+  const reset = useLearnStore((s) => s.reset)
 
-  if (!session) return null;
+  if (!session) return null
 
-  const PhaseComponent = PHASE_COMPONENTS[currentPhase];
-  const progressPercent = Math.round(((phaseIndex + 1) / PHASE_ORDER.length) * 100);
-  const isLastPhase = currentPhase === "srsSchedule";
-  const isFirstPhase = phaseIndex === 0;
+  const PhaseComponent = PHASE_COMPONENTS[currentPhase]
+  const progressPercent = Math.round(
+    ((phaseIndex + 1) / PHASE_ORDER.length) * 100
+  )
+  const isLastPhase = currentPhase === "srsSchedule"
+  const isFirstPhase = phaseIndex === 0
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -94,7 +96,7 @@ export function SessionStepper() {
                 onClick={() => {
                   // reset() sets session to null, which triggers the page's
                   // useEffect to re-load and call startSession() on next render
-                  reset();
+                  reset()
                 }}
               >
                 Restart
@@ -108,5 +110,5 @@ export function SessionStepper() {
         </div>
       </div>
     </div>
-  );
+  )
 }

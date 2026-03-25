@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { useLearnStore } from "@/stores/learn-store";
-import { PhaseBadge } from "@/components/learn/PhaseBadge";
-import { ScienceTag } from "@/components/learn/ScienceTag";
-import { FeedbackBox } from "@/components/learn/FeedbackBox";
-import { ConfidenceSelector } from "@/components/learn/ConfidenceSelector";
-import { cn } from "@/lib/utils";
+import { useLearnStore } from "@/stores/learn-store"
+import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { ScienceTag } from "@/components/learn/ScienceTag"
+import { FeedbackBox } from "@/components/learn/FeedbackBox"
+import { ConfidenceSelector } from "@/components/learn/ConfidenceSelector"
+import { cn } from "@/lib/utils"
 
 export function PhaseScenario() {
-  const session = useLearnStore((s) => s.session);
-  const scenarioConfidence = useLearnStore((s) => s.scenarioConfidence);
-  const scenarioAnswer = useLearnStore((s) => s.scenarioAnswer);
-  const scenarioCorrect = useLearnStore((s) => s.scenarioCorrect);
-  const setConfidence = useLearnStore((s) => s.setConfidence);
-  const answerScenario = useLearnStore((s) => s.answerScenario);
+  const session = useLearnStore((s) => s.session)
+  const scenarioConfidence = useLearnStore((s) => s.scenarioConfidence)
+  const scenarioAnswer = useLearnStore((s) => s.scenarioAnswer)
+  const scenarioCorrect = useLearnStore((s) => s.scenarioCorrect)
+  const setConfidence = useLearnStore((s) => s.setConfidence)
+  const answerScenario = useLearnStore((s) => s.answerScenario)
 
-  if (!session) return null;
+  if (!session) return null
   const {
     scenarioText,
     question,
@@ -24,9 +24,9 @@ export function PhaseScenario() {
     feedbackCorrect,
     feedbackIncorrect,
     detailedExplanation,
-  } = session.phases.scenario;
-  const answered = scenarioAnswer !== null;
-  const confidenceSelected = scenarioConfidence !== null;
+  } = session.phases.scenario
+  const answered = scenarioAnswer !== null
+  const confidenceSelected = scenarioConfidence !== null
 
   return (
     <div className="space-y-4">
@@ -35,7 +35,8 @@ export function PhaseScenario() {
         Scenario vignette: applied clinical judgment
       </h2>
       <p className="text-sm leading-relaxed text-muted-foreground">
-        Now you face a realistic clinical scenario. First, rate your confidence —{" "}
+        Now you face a realistic clinical scenario. First, rate your confidence
+        —{" "}
         <strong className="text-foreground">
           high-confidence errors corrected with feedback create the strongest
           memories
@@ -48,7 +49,7 @@ export function PhaseScenario() {
       </div>
 
       <div className="rounded-md bg-muted p-4">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+        <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
           Clinical Scenario
         </p>
         <div
@@ -67,15 +68,22 @@ export function PhaseScenario() {
         dangerouslySetInnerHTML={{ __html: question }}
       />
 
-      <div className={cn("space-y-2", !confidenceSelected && "pointer-events-none opacity-50")}>
+      <div
+        className={cn(
+          "space-y-2",
+          !confidenceSelected && "pointer-events-none opacity-50"
+        )}
+      >
         {options.map((option) => {
-          const isSelected = scenarioAnswer === option.id;
-          const isCorrect = option.id === correctOptionId;
-          let variant = "";
+          const isSelected = scenarioAnswer === option.id
+          const isCorrect = option.id === correctOptionId
+          let variant = ""
           if (answered) {
-            if (isCorrect) variant = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950";
-            else if (isSelected) variant = "border-red-500 bg-red-50 dark:bg-red-950";
-            else variant = "opacity-50";
+            if (isCorrect)
+              variant = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950"
+            else if (isSelected)
+              variant = "border-red-500 bg-red-50 dark:bg-red-950"
+            else variant = "opacity-50"
           }
 
           return (
@@ -86,13 +94,15 @@ export function PhaseScenario() {
               onClick={() => answerScenario(option.id)}
               className={cn(
                 "w-full rounded-md border p-3 text-left text-sm leading-relaxed transition-colors",
-                !answered && confidenceSelected && "hover:border-primary hover:bg-muted/50",
-                answered ? variant : "",
+                !answered &&
+                  confidenceSelected &&
+                  "hover:border-primary hover:bg-muted/50",
+                answered ? variant : ""
               )}
             >
               {option.text}
             </button>
-          );
+          )
         })}
       </div>
 
@@ -106,5 +116,5 @@ export function PhaseScenario() {
         <span dangerouslySetInnerHTML={{ __html: detailedExplanation }} />
       </FeedbackBox>
     </div>
-  );
+  )
 }

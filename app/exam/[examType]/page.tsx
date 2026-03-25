@@ -1,33 +1,33 @@
-"use client";
+"use client"
 
-import { use } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowLeft, Clock, FileText, AlertTriangle } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { use } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { ArrowLeft, Clock, FileText, AlertTriangle } from "lucide-react"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { getExamConfig } from "@/lib/exam-config";
-import { getQuestionPoolSize } from "@/lib/question-loader";
-import { useExamStore } from "@/stores/exam-store";
-import { ExamType } from "@/types/exam";
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { getExamConfig } from "@/lib/exam-config"
+import { getQuestionPoolSize } from "@/lib/question-loader"
+import { useExamStore } from "@/stores/exam-store"
+import { ExamType } from "@/types/exam"
 
 export default function ExamInstructionsPage({
   params,
 }: {
-  params: Promise<{ examType: string }>;
+  params: Promise<{ examType: string }>
 }) {
-  const { examType } = use(params);
-  const router = useRouter();
-  const startExam = useExamStore((s) => s.startExam);
-  const config = getExamConfig(examType);
+  const { examType } = use(params)
+  const router = useRouter()
+  const startExam = useExamStore((s) => s.startExam)
+  const config = getExamConfig(examType)
 
   if (!config) {
     return (
@@ -40,22 +40,26 @@ export default function ExamInstructionsPage({
           Back to Home
         </Link>
       </main>
-    );
+    )
   }
 
-  const poolSize = getQuestionPoolSize(config.type);
-  const questionsToUse = Math.min(config.questionCount, poolSize);
+  const poolSize = getQuestionPoolSize(config.type)
+  const questionsToUse = Math.min(config.questionCount, poolSize)
 
   const handleStart = () => {
-    startExam(examType as ExamType);
-    router.push(`/exam/${examType}/session`);
-  };
+    startExam(examType as ExamType)
+    router.push(`/exam/${examType}/session`)
+  }
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12">
       <Link
         href="/"
-        className={buttonVariants({ variant: "ghost", size: "sm", className: "mb-6" })}
+        className={buttonVariants({
+          variant: "ghost",
+          size: "sm",
+          className: "mb-6",
+        })}
       >
         <ArrowLeft className="mr-1 h-4 w-4" />
         Back to Exams
@@ -77,9 +81,7 @@ export default function ExamInstructionsPage({
               <FileText className="h-5 w-5 text-muted-foreground" />
               <div>
                 <p className="font-medium">{questionsToUse} Questions</p>
-                <p className="text-xs text-muted-foreground">
-                  Multiple choice
-                </p>
+                <p className="text-xs text-muted-foreground">Multiple choice</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -110,9 +112,7 @@ export default function ExamInstructionsPage({
                 - The exam will auto-submit when time runs out. Unanswered
                 questions are marked incorrect.
               </li>
-              <li>
-                - A score of 75% or higher is considered passing.
-              </li>
+              <li>- A score of 75% or higher is considered passing.</li>
             </ul>
           </div>
 
@@ -138,5 +138,5 @@ export default function ExamInstructionsPage({
         </CardContent>
       </Card>
     </main>
-  );
+  )
 }

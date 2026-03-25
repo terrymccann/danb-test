@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { Clock, FileText } from "lucide-react";
+import Link from "next/link"
+import { Clock, FileText } from "lucide-react"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { ExamConfig } from "@/types/exam";
-import { getQuestionPoolSize } from "@/lib/question-loader";
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import { ExamConfig } from "@/types/exam"
+import { getQuestionPoolSize } from "@/lib/question-loader"
 
 interface ExamCardProps {
-  config: ExamConfig;
+  config: ExamConfig
 }
 
 export function ExamCard({ config }: ExamCardProps) {
-  const poolSize = getQuestionPoolSize(config.type);
+  const poolSize = getQuestionPoolSize(config.type)
 
   return (
     <Card className="flex flex-col">
@@ -60,5 +60,5 @@ export function ExamCard({ config }: ExamCardProps) {
         </Link>
       </CardContent>
     </Card>
-  );
+  )
 }

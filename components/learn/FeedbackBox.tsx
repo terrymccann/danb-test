@@ -1,13 +1,13 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 interface FeedbackBoxProps {
-  variant: "correct" | "incorrect" | "detail";
-  children: React.ReactNode;
-  show: boolean;
+  variant: "correct" | "incorrect" | "detail"
+  children: React.ReactNode
+  show: boolean
 }
 
 export function FeedbackBox({ variant, children, show }: FeedbackBoxProps) {
-  if (!show) return null;
+  if (!show) return null
 
   return (
     <div
@@ -18,10 +18,10 @@ export function FeedbackBox({ variant, children, show }: FeedbackBoxProps) {
         variant === "incorrect" &&
           "border-l-3 border-red-500 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100",
         variant === "detail" &&
-          "border-l-3 border-border bg-muted text-foreground",
+          "border-l-3 border-border bg-muted text-foreground"
       )}
     >
       {children}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Grid3X3 } from "lucide-react";
+import { Grid3X3 } from "lucide-react"
 import {
   Dialog,
   DialogClose,
@@ -8,18 +8,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { useExamStore } from "@/stores/exam-store";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { useExamStore } from "@/stores/exam-store"
+import { cn } from "@/lib/utils"
 
 export function QuestionGrid() {
-  const questions = useExamStore((s) => s.questions);
-  const currentIndex = useExamStore((s) => s.currentIndex);
-  const answers = useExamStore((s) => s.answers);
-  const flagged = useExamStore((s) => s.flagged);
-  const goToQuestion = useExamStore((s) => s.goToQuestion);
+  const questions = useExamStore((s) => s.questions)
+  const currentIndex = useExamStore((s) => s.currentIndex)
+  const answers = useExamStore((s) => s.answers)
+  const flagged = useExamStore((s) => s.flagged)
+  const goToQuestion = useExamStore((s) => s.goToQuestion)
 
   return (
     <Dialog>
@@ -50,9 +50,9 @@ export function QuestionGrid() {
         <ScrollArea className="max-h-[400px]">
           <div className="grid grid-cols-10 gap-1.5 p-1">
             {questions.map((q, index) => {
-              const isAnswered = q.id in answers;
-              const isFlagged = flagged.has(q.id);
-              const isCurrent = index === currentIndex;
+              const isAnswered = q.id in answers
+              const isFlagged = flagged.has(q.id)
+              const isCurrent = index === currentIndex
 
               return (
                 <DialogClose
@@ -68,7 +68,7 @@ export function QuestionGrid() {
                         !isFlagged &&
                           !isAnswered &&
                           "bg-muted text-muted-foreground",
-                        isCurrent && "ring-2 ring-ring ring-offset-1",
+                        isCurrent && "ring-2 ring-ring ring-offset-1"
                       )}
                     />
                   }
@@ -76,11 +76,11 @@ export function QuestionGrid() {
                 >
                   {index + 1}
                 </DialogClose>
-              );
+              )
             })}
           </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

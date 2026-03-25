@@ -1,61 +1,61 @@
-"use client";
+"use client"
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Timer } from "@/components/exam/Timer";
-import { QuestionDisplay } from "@/components/exam/QuestionDisplay";
-import { QuestionNav } from "@/components/exam/QuestionNav";
-import { QuestionGrid } from "@/components/exam/QuestionGrid";
-import { useExamStore } from "@/stores/exam-store";
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { Timer } from "@/components/exam/Timer"
+import { QuestionDisplay } from "@/components/exam/QuestionDisplay"
+import { QuestionNav } from "@/components/exam/QuestionNav"
+import { QuestionGrid } from "@/components/exam/QuestionGrid"
+import { useExamStore } from "@/stores/exam-store"
 
 export default function ExamSessionPage() {
-  const router = useRouter();
-  const examType = useExamStore((s) => s.examType);
-  const questions = useExamStore((s) => s.questions);
-  const currentIndex = useExamStore((s) => s.currentIndex);
-  const answers = useExamStore((s) => s.answers);
-  const isComplete = useExamStore((s) => s.isComplete);
-  const nextQuestion = useExamStore((s) => s.nextQuestion);
-  const prevQuestion = useExamStore((s) => s.prevQuestion);
+  const router = useRouter()
+  const examType = useExamStore((s) => s.examType)
+  const questions = useExamStore((s) => s.questions)
+  const currentIndex = useExamStore((s) => s.currentIndex)
+  const answers = useExamStore((s) => s.answers)
+  const isComplete = useExamStore((s) => s.isComplete)
+  const nextQuestion = useExamStore((s) => s.nextQuestion)
+  const prevQuestion = useExamStore((s) => s.prevQuestion)
 
   // Redirect if no active exam or exam is complete
   useEffect(() => {
     if (!examType || questions.length === 0) {
-      router.replace("/");
-      return;
+      router.replace("/")
+      return
     }
     if (isComplete) {
-      router.replace(`/exam/${examType}/results`);
+      router.replace(`/exam/${examType}/results`)
     }
-  }, [examType, questions.length, isComplete, router]);
+  }, [examType, questions.length, isComplete, router])
 
   // beforeunload warning
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-    };
-    window.addEventListener("beforeunload", handler);
-    return () => window.removeEventListener("beforeunload", handler);
-  }, []);
+      e.preventDefault()
+    }
+    window.addEventListener("beforeunload", handler)
+    return () => window.removeEventListener("beforeunload", handler)
+  }, [])
 
   // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-        e.preventDefault();
-        nextQuestion();
+        e.preventDefault()
+        nextQuestion()
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-        e.preventDefault();
-        prevQuestion();
+        e.preventDefault()
+        prevQuestion()
       }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [nextQuestion, prevQuestion]);
+    }
+    window.addEventListener("keydown", handler)
+    return () => window.removeEventListener("keydown", handler)
+  }, [nextQuestion, prevQuestion])
 
-  if (!examType || questions.length === 0) return null;
+  if (!examType || questions.length === 0) return null
 
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = Object.keys(answers).length
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -65,9 +65,7 @@ export default function ExamSessionPage() {
           <Timer />
           <span className="text-sm text-muted-foreground">
             Q {currentIndex + 1}/{questions.length}{" "}
-            <span className="hidden sm:inline">
-              ({answeredCount} answered)
-            </span>
+            <span className="hidden sm:inline">({answeredCount} answered)</span>
           </span>
           <QuestionGrid />
         </div>
@@ -85,5 +83,5 @@ export default function ExamSessionPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

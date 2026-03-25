@@ -1,4 +1,4 @@
-import type { ExamType } from "@/types/exam";
+import type { ExamType } from "@/types/exam"
 
 export type PhaseKey =
   | "preTest"
@@ -7,102 +7,102 @@ export type PhaseKey =
   | "scenario"
   | "interleaved"
   | "teachBack"
-  | "srsSchedule";
+  | "srsSchedule"
 
 export type ConfidenceLevel =
   | "guessing"
   | "somewhat"
   | "confident"
-  | "very-confident";
+  | "very-confident"
 
 export interface PhaseOption {
-  id: string;
-  text: string;
+  id: string
+  text: string
 }
 
 export interface PreTestPhase {
-  question: string;
-  options: PhaseOption[];
-  correctOptionId: string;
-  feedbackCorrect: string;
-  feedbackIncorrect: string;
+  question: string
+  options: PhaseOption[]
+  correctOptionId: string
+  feedbackCorrect: string
+  feedbackIncorrect: string
 }
 
 export interface ContentPhase {
-  conceptTitle: string;
-  conceptBody: string;
-  diagram?: string;
-  scienceTags: string[];
+  conceptTitle: string
+  conceptBody: string
+  diagram?: string
+  scienceTags: string[]
 }
 
 export interface ElaborationPhase {
-  prompt: string;
-  expertReasoning: string;
+  prompt: string
+  expertReasoning: string
 }
 
 export interface ScenarioPhase {
-  scenarioText: string;
-  question: string;
-  options: PhaseOption[];
-  correctOptionId: string;
-  feedbackCorrect: string;
-  feedbackIncorrect: string;
-  detailedExplanation: string;
+  scenarioText: string
+  question: string
+  options: PhaseOption[]
+  correctOptionId: string
+  feedbackCorrect: string
+  feedbackIncorrect: string
+  detailedExplanation: string
 }
 
 export interface InterleavedPhase {
-  domainLabel: string;
-  question: string;
-  options: PhaseOption[];
-  correctOptionId: string;
-  feedbackCorrect: string;
-  feedbackIncorrect: string;
+  domainLabel: string
+  question: string
+  options: PhaseOption[]
+  correctOptionId: string
+  feedbackCorrect: string
+  feedbackIncorrect: string
 }
 
 export interface TeachBackPhase {
-  prompt: string;
-  modelAnswer: string;
+  prompt: string
+  modelAnswer: string
 }
 
 export interface SRSItem {
-  concept: string;
-  interval: string;
+  concept: string
+  interval: string
 }
 
 export interface SRSPhase {
-  items: SRSItem[];
-  sessionSummary: string;
+  items: SRSItem[]
+  sessionSummary: string
 }
 
 export interface LearningSession {
-  id: string;
-  title: string;
-  domain: ExamType;
-  topic: string;
-  estimatedMinutes: number;
+  id: string
+  title: string
+  domain: ExamType
+  topic: string
+  estimatedMinutes: number
   phases: {
-    preTest: PreTestPhase;
-    content: ContentPhase;
-    elaboration: ElaborationPhase;
-    scenario: ScenarioPhase;
-    interleaved: InterleavedPhase;
-    teachBack: TeachBackPhase;
-    srsSchedule: SRSPhase;
-  };
+    preTest: PreTestPhase
+    content: ContentPhase
+    elaboration: ElaborationPhase
+    scenario: ScenarioPhase
+    interleaved: InterleavedPhase
+    teachBack: TeachBackPhase
+    srsSchedule: SRSPhase
+  }
 }
 
 export interface SessionMeta {
-  id: string;
-  title: string;
-  domain: ExamType;
-  topic: string;
-  estimatedMinutes: number;
-  scienceTags: string[];
+  id: string
+  title: string
+  domain: ExamType
+  topic: string
+  estimatedMinutes: number
+  scienceTags: string[]
 }
 
 export interface TeachBackEvaluation {
-  accuracy: "good" | "partial" | "missed";
-  completeness: number;
-  feedback: string;
-  missedConcepts: string[];
+  accuracy: "good" | "partial" | "missed"
+  completeness: number
+  feedback: string
+  missedConcepts: string[]
 }

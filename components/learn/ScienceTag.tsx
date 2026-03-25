@@ -1,7 +1,7 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge"
 
 interface ScienceTagProps {
-  label: string;
+  label: string
 }
 
 export function ScienceTag({ label }: ScienceTagProps) {
@@ -9,5 +9,5 @@ export function ScienceTag({ label }: ScienceTagProps) {
     <Badge variant="secondary" className="text-xs font-medium">
       {label}
     </Badge>
-  );
+  )
 }
