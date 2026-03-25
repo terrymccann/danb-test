@@ -1,0 +1,72 @@
+{
+  "id": "ice-spaulding-classification",
+  "title": "Sterilization Methods & Instrument Processing",
+  "domain": "ice",
+  "topic": "Process Instruments and Devices",
+  "estimatedMinutes": 12,
+  "phases": {
+    "preTest": {
+      "question": "A dental handpiece is classified as a <strong>semi-critical</strong> item under the Spaulding Classification. What is the minimum acceptable level of processing required before it can be used on the next patient?",
+      "options": [
+        { "id": "a", "text": "Wipe down with an intermediate-level surface disinfectant" },
+        { "id": "b", "text": "Immerse in a high-level disinfectant for 20 minutes" },
+        { "id": "c", "text": "Heat sterilize in a steam autoclave after cleaning" },
+        { "id": "d", "text": "Flush the waterlines for 30 seconds between patients" }
+      ],
+      "correctOptionId": "c",
+      "feedbackCorrect": "<strong>Correct.</strong> You already have a head start on this topic. The teaching phase will deepen and connect what you know.",
+      "feedbackIncorrect": "<strong>That's not right — and that's the point.</strong> Most learners get pre-test questions wrong. Research by Richland, Kornell & Kao (2009) showed that even unsuccessful retrieval attempts boost later learning by 20–40%. Your brain just flagged this as a gap. Now it will pay closer attention when the content is taught."
+    },
+    "content": {
+      "conceptTitle": "The Spaulding Classification",
+      "conceptBody": "<strong>The one concept:</strong> The Spaulding Classification (developed by Earle Spaulding in 1968) sorts all patient-care items into three categories based on the <em>risk of infection</em> from their use. A dental handpiece contacts mucous membranes but does not normally penetrate soft tissue or bone, making it <strong>semi-critical</strong>. The CDC's 2003 Guidelines for Infection Control in Dental Health-Care Settings specifically state that dental handpieces <strong>must be heat sterilized between patients</strong> — high-level disinfection alone is not acceptable for handpieces, even though it's technically the minimum for semi-critical items, because handpieces have internal components that can harbor contaminants. This is a frequent DANB exam point.",
+      "diagram": "<svg viewBox=\"0 0 520 310\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;max-width:520px\"><polygon points=\"260,20 420,240 100,240\" fill=\"#FCEBEB\" stroke=\"#E24B4A\" stroke-width=\"1.5\"/><polygon points=\"260,80 380,210 140,210\" fill=\"#FAEEDA\" stroke=\"#EF9F27\" stroke-width=\"1\"/><polygon points=\"260,130 350,195 170,195\" fill=\"#E6F1FB\" stroke=\"#378ADD\" stroke-width=\"1\"/><text x=\"260\" y=\"55\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"500\" fill=\"#791F1F\">Critical</text><text x=\"260\" y=\"70\" text-anchor=\"middle\" font-size=\"10\" fill=\"#A32D2D\">Penetrates tissue/bone → Must sterilize</text><text x=\"260\" y=\"115\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"500\" fill=\"#633806\">Semi-critical</text><text x=\"260\" y=\"130\" text-anchor=\"middle\" font-size=\"10\" fill=\"#854F0B\">Touches mucous membranes → Sterilize or HLD</text><text x=\"260\" y=\"168\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"500\" fill=\"#0C447C\">Non-critical</text><text x=\"260\" y=\"183\" text-anchor=\"middle\" font-size=\"10\" fill=\"#185FA5\">Contacts intact skin only → Clean + disinfect</text><text x=\"100\" y=\"265\" text-anchor=\"start\" font-size=\"10\" fill=\"#6b7280\">Examples: Surgical forceps, scalpels, scalers (critical) · Dental mirrors, handpieces, impression trays (semi-critical) · X-ray heads, blood pressure cuffs, countertops (non-critical)</text><text x=\"100\" y=\"285\" text-anchor=\"start\" font-size=\"10\" fill=\"#6b7280\">Key CDC rule: Semi-critical items that contact mucous membranes should be heat sterilized. If not heat-tolerant, use high-level disinfection (HLD) as the minimum.</text></svg>",
+      "scienceTags": ["Cognitive load theory", "Dual coding"]
+    },
+    "elaboration": {
+      "prompt": "Why does the CDC require heat sterilization specifically for dental handpieces, even though the Spaulding Classification technically allows high-level disinfection for semi-critical items? What is it about the physical design of a handpiece that creates a unique infection risk?",
+      "expertReasoning": "<strong>Expert reasoning:</strong> Dental handpieces have <em>internal turbines and waterlines</em> that cannot be adequately reached by liquid chemical disinfectants. During use, oral fluids and debris are aspirated (\"sucked back\") into these internal components through a mechanism called <strong>retraction</strong>. Simply wiping or soaking the exterior doesn't decontaminate these internal channels. Only the heat and pressure of steam sterilization (250°F/121°C at 15 psi) can penetrate these internal components and kill all microorganisms, including bacterial endospores. This is why the CDC carved out a specific exception: handpieces must be heat sterilized, not merely high-level disinfected, even though their Spaulding classification would normally allow HLD. The DANB exam tests this distinction frequently because it requires understanding the <em>reasoning behind the rule</em>, not just the rule itself."
+    },
+    "scenario": {
+      "scenarioText": "You are the infection control coordinator at a busy general practice. During your weekly sterilization monitoring review, you discover that the most recent biological indicator (spore test) for the office's steam autoclave came back <strong>positive</strong> — meaning live spores survived the cycle. The autoclave was used to process instruments for 14 patients over the past three days before the test results were returned. The dentist is currently with a patient and has a full afternoon schedule.",
+      "question": "What is the <strong>most appropriate immediate</strong> action?",
+      "options": [
+        { "id": "a", "text": "Continue using the autoclave but run a second spore test immediately to confirm the result before taking any action" },
+        { "id": "b", "text": "Remove the autoclave from service immediately, re-test with a new biological indicator, and do not use instruments processed in that autoclave until the issue is resolved" },
+        { "id": "c", "text": "Contact all 14 patients immediately to inform them of a potential infection exposure" },
+        { "id": "d", "text": "Switch to chemical vapor sterilization for the afternoon and investigate the autoclave failure after the last patient" }
+      ],
+      "correctOptionId": "b",
+      "feedbackCorrect": "<strong>Correct.</strong> The CDC guidelines require that any sterilizer with a positive spore test be immediately removed from service. A repeat biological indicator test is run, and the sterilizer must not be used again until the issue is identified and resolved. Items processed since the last negative spore test should be recalled if possible, though patient notification depends on state law and the specific circumstances.",
+      "feedbackIncorrect": "<strong>Not quite.</strong> The correct answer is <strong>B — remove the autoclave from service immediately and re-test</strong>. This follows CDC guidelines: a positive spore test means the sterilizer may not be achieving sterilization, and it must be pulled from use until the cause is found and corrected.",
+      "detailedExplanation": "<strong>Why every other answer is wrong:</strong><br/><br/><strong>A (Continue using + re-test)</strong> — This is the most dangerous choice. A positive biological indicator means sterilization may have failed. Continuing to use the autoclave while \"confirming\" exposes more patients to potentially non-sterile instruments. The CDC is clear: remove from service first, then investigate.<br/><br/><strong>C (Contact all 14 patients immediately)</strong> — While patient notification may eventually be warranted, it is not the <em>immediate</em> first action. The priority is to stop the problem (remove sterilizer from service) and confirm the failure before escalating to patient contact. Premature notification without confirmed failure could cause unnecessary alarm. Notification protocols vary by state law and should involve the dentist and possibly legal counsel.<br/><br/><strong>D (Switch to chemical vapor for the afternoon)</strong> — This correctly stops using the failed autoclave but delays investigation. More importantly, the question tests whether you know the protocol: remove from service AND re-test immediately. Simply switching methods and \"investigating later\" doesn't follow CDC recommendations, which prioritize prompt identification and correction of the failure.<br/><br/><strong>Exam insight:</strong> DANB frequently tests the sequence of actions after a positive spore test. The key protocol is: (1) remove from service, (2) re-test, (3) review procedures and correct the problem, (4) re-test again, (5) return to service only after negative result. Items processed since the last negative test should be retrieved if possible and reprocessed."
+    },
+    "interleaved": {
+      "domainLabel": "Radiation Health & Safety",
+      "question": "A dental assistant takes a periapical radiograph of tooth #8 using the paralleling technique. The resulting image shows the tooth appearing significantly shorter than its actual length, with the roots appearing compressed. What is the most likely cause of this error?",
+      "options": [
+        { "id": "a", "text": "The PID (cone) was angled too far toward the patient's feet (negative vertical angulation)" },
+        { "id": "b", "text": "The patient moved during the exposure" },
+        { "id": "c", "text": "Excessive vertical angulation of the PID — the beam was directed too steeply downward" },
+        { "id": "d", "text": "The sensor/film was placed too far from the tooth being imaged" }
+      ],
+      "correctOptionId": "c",
+      "feedbackCorrect": "<strong>Correct.</strong> Excessive positive vertical angulation (beam aimed too steeply) causes <strong>foreshortening</strong> — the image appears shorter than the actual tooth. This is a fundamental paralleling technique error. The opposite error — insufficient vertical angulation — causes <strong>elongation</strong>, where the tooth appears longer than reality. The DANB RHS exam frequently tests your ability to diagnose radiographic errors from image descriptions.",
+      "feedbackIncorrect": "<strong>This is the tricky part about interleaving.</strong> The answer is <strong>C — excessive vertical angulation causing foreshortening</strong>. This question jumped from Infection Control to Radiation Health & Safety. That sudden shift forces you to switch mental gears — and that's exactly the skill the CDA exam tests, since it mixes questions from all domains. In radiology, remember: too much angulation = foreshortening (short image), too little = elongation (long image)."
+    },
+    "teachBack": {
+      "prompt": "A new dental assistant on their first day asks you: \"How do I know whether to sterilize something or just wipe it down with disinfectant?\" In 2–3 sentences, explain the Spaulding Classification and the key rule about dental handpieces. Use no textbook jargon.",
+      "modelAnswer": "It depends on what the item touches. If it goes inside tissue — like a scalpel or needle — it needs full sterilization, no exceptions. If it goes in the mouth but doesn't cut into anything — like mirrors and handpieces — it also needs to be sterilized, because the mouth has mucous membranes that can easily pick up germs. If it only touches skin or surfaces — like the X-ray cone or the countertop — then cleaning and disinfecting is enough. The big one to remember is handpieces: even though they don't cut tissue, they have internal parts that suck in stuff from the mouth, so they always need heat sterilization."
+    },
+    "srsSchedule": {
+      "items": [
+        { "concept": "Spaulding Classification — critical vs. semi-critical vs. non-critical definitions and examples", "interval": "Tomorrow" },
+        { "concept": "Positive biological indicator protocol — remove from service, re-test, correct, re-test, return", "interval": "Tomorrow" },
+        { "concept": "Dental handpiece sterilization exception — why HLD is not acceptable (internal retraction contamination)", "interval": "3 days" },
+        { "concept": "Radiographic foreshortening vs. elongation — vertical angulation errors and their image effects", "interval": "3 days" },
+        { "concept": "Steam autoclave parameters — 250°F (121°C), 15 psi, 15–30 minutes depending on load", "interval": "8 days" }
+      ],
+      "sessionSummary": "This 7-phase session covered one concept deeply — the Spaulding Classification and instrument processing — while weaving in a cross-domain radiology question to build discrimination skills. A traditional study guide would have listed 20 facts about sterilization for you to highlight and forget. Research consistently shows deep processing of fewer concepts produces better exam performance than shallow coverage of many."
+    }
+  }
+}
