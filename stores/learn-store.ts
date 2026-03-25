@@ -36,6 +36,7 @@ interface LearnState {
   teachBackResponse: string
   teachBackEvaluation: TeachBackEvaluation | null
   teachBackLoading: boolean
+  teachBackSubmitted: boolean
 
   startSession: (session: LearningSession) => void
   goToPhase: (phase: PhaseKey) => void
@@ -75,6 +76,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
   teachBackResponse: "",
   teachBackEvaluation: null,
   teachBackLoading: false,
+  teachBackSubmitted: false,
 
   startSession: (session) => {
     set({
@@ -92,6 +94,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       teachBackResponse: "",
       teachBackEvaluation: null,
       teachBackLoading: false,
+      teachBackSubmitted: false,
     })
   },
 
@@ -185,7 +188,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
     const { session, teachBackResponse, teachBackEvaluation } = get()
     if (!session || teachBackEvaluation !== null) return
 
-    set({ teachBackLoading: true })
+    set({ teachBackLoading: true, teachBackSubmitted: true })
 
     try {
       const controller = new AbortController()
@@ -234,6 +237,7 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       teachBackResponse: "",
       teachBackEvaluation: null,
       teachBackLoading: false,
+      teachBackSubmitted: false,
     })
   },
 }))

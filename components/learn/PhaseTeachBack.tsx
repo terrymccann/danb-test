@@ -14,6 +14,7 @@ export function PhaseTeachBack() {
   const teachBackResponse = useLearnStore((s) => s.teachBackResponse)
   const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
   const teachBackLoading = useLearnStore((s) => s.teachBackLoading)
+  const teachBackSubmitted = useLearnStore((s) => s.teachBackSubmitted)
   const setTeachBackResponse = useLearnStore((s) => s.setTeachBackResponse)
   const submitTeachBack = useLearnStore((s) => s.submitTeachBack)
   const nextPhase = useLearnStore((s) => s.nextPhase)
@@ -21,7 +22,7 @@ export function PhaseTeachBack() {
   if (!session) return null
   const { prompt, modelAnswer } = session.phases.teachBack
   const hasResponse = teachBackResponse.trim().length > 0
-  const submitted = teachBackEvaluation !== null
+  const hasEvaluation = teachBackEvaluation !== null
 
   return (
     <div className="space-y-4">
@@ -47,11 +48,11 @@ export function PhaseTeachBack() {
         value={teachBackResponse}
         onChange={(e) => setTeachBackResponse(e.target.value)}
         placeholder="Type your explanation here..."
-        disabled={submitted}
+        disabled={hasEvaluation}
         className="min-h-[120px] w-full resize-y rounded-md border bg-background p-3 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none disabled:opacity-50"
       />
 
-      {!submitted && !teachBackLoading && (
+      {!hasEvaluation && !teachBackLoading && (
         <div className="flex items-center gap-3">
           <Button onClick={submitTeachBack} disabled={!hasResponse}>
             Submit for AI evaluation
@@ -84,7 +85,7 @@ export function PhaseTeachBack() {
         </div>
       )}
 
-      {submitted && teachBackEvaluation && (
+      {hasEvaluation && teachBackEvaluation && (
         <div className="space-y-3 rounded-md border p-4">
           <div className="flex items-center gap-3">
             <Badge
@@ -127,7 +128,7 @@ export function PhaseTeachBack() {
         </div>
       )}
 
-      {submitted && (
+      {(hasEvaluation || (teachBackSubmitted && !teachBackLoading)) && (
         <div className="rounded-md bg-muted p-4 text-sm leading-relaxed">
           <strong>Model answer:</strong>
           <br />
