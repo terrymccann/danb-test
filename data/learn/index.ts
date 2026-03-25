@@ -55,7 +55,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-tooth-anatomy",
             "Tooth Anatomy & Morphology",
             "gc",
-            "Evaluation"
+            "Evaluation",
+            true
           ),
           s("gc-head-neck-anatomy", "Head & Neck Anatomy", "gc", "Evaluation"),
           s("gc-occlusion", "Occlusion & Malocclusion", "gc", "Evaluation"),
@@ -63,7 +64,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-medical-emergencies",
             "Medical Emergencies in the Dental Office",
             "gc",
-            "Evaluation"
+            "Evaluation",
+            true
           ),
         ],
       },
@@ -191,7 +193,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "Dental Materials",
             true
           ),
-          s("gc-cements", "Dental Cements & Liners", "gc", "Dental Materials"),
+          s("gc-cements", "Dental Cements & Liners", "gc", "Dental Materials",
+            true),
           s(
             "gc-impressions",
             "Impression Materials & Gypsum",
@@ -236,7 +239,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-bitewing",
             "Bitewing Radiographs",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-occlusal-panoramic",
@@ -371,7 +375,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-ppe",
             "Personal Protective Equipment (PPE)",
             "ice",
-            "Prevention of Disease Transmission"
+            "Prevention of Disease Transmission",
+            true
           ),
           s(
             "ice-vaccination",
