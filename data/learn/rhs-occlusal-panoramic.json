@@ -13,9 +13,9 @@
         { "id": "c", "text": "It is a ghost image caused by the apron's position; a flat apron without a thyroid collar should be used for panoramic films" },
         { "id": "d", "text": "It is a processing artifact and has nothing to do with the lead apron placement" }
       ],
-      "correctOptionId": "c",
-      "feedbackCorrect": "<strong>Correct.</strong> You already have a solid foundation here. The teaching phase will sharpen the details and help you explain the reasoning, not just recall the answer.",
-      "feedbackIncorrect": "<strong>That's not right — and that's the point.</strong> Research by Richland, Kornell & Kao (2009) shows that unsuccessful retrieval attempts before instruction boost later retention by 20–40%. Your brain has now flagged this concept as a knowledge gap and will engage more deeply with the upcoming content."
+      "correctOptionId": "b",
+      "feedbackCorrect": "<strong>Correct.</strong> You already have a solid foundation here. A thyroid collar creates a direct artifact — not a ghost image — because it physically blocks the rotating beam path. The teaching phase will sharpen the details.",
+      "feedbackIncorrect": "<strong>That's not right — and that's the point.</strong> A thyroid collar on a panoramic radiograph creates a <strong>direct artifact</strong> (the lead physically blocks the rotating beam), not a ghost image. Ghost images are caused by objects between the x-ray source and center of rotation being projected onto the opposite side. Your brain has now flagged this distinction as a knowledge gap."
     },
     "content": {
       "conceptTitle": "Occlusal & Panoramic Radiography",
