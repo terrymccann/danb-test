@@ -36,7 +36,24 @@ export function SessionStepper() {
   const session = useLearnStore((s) => s.session)
   const currentPhase = useLearnStore((s) => s.currentPhase)
   const phaseIndex = useLearnStore((s) => s.phaseIndex)
-  const canAdvance = useLearnStore((s) => s.canAdvance)
+  const canAdvanceValue = useLearnStore((s) => {
+    switch (s.currentPhase) {
+      case "preTest":
+        return s.preTestAnswer !== null
+      case "content":
+        return true
+      case "elaboration":
+        return s.elaborationRevealed
+      case "scenario":
+        return s.scenarioConfidence !== null && s.scenarioAnswer !== null
+      case "interleaved":
+        return s.interleavedAnswer !== null
+      case "teachBack":
+        return s.teachBackResponse.trim().length > 0
+      case "srsSchedule":
+        return false
+    }
+  })
   const nextPhase = useLearnStore((s) => s.nextPhase)
   const prevPhase = useLearnStore((s) => s.prevPhase)
   const reset = useLearnStore((s) => s.reset)
@@ -103,7 +120,7 @@ export function SessionStepper() {
               </Button>
             </div>
           ) : (
-            <Button onClick={nextPhase} disabled={!canAdvance()}>
+            <Button onClick={nextPhase} disabled={!canAdvanceValue}>
               {NEXT_LABELS[currentPhase]}
             </Button>
           )}
