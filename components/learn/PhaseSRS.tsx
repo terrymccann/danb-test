@@ -2,7 +2,6 @@
 
 import { useLearnStore } from "@/stores/learn-store"
 import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { ScienceTag } from "@/components/learn/ScienceTag"
 import { cn } from "@/lib/utils"
 
 const INTERVAL_STYLES: Record<string, string> = {
@@ -21,19 +20,10 @@ export function PhaseSRS() {
   return (
     <div className="space-y-4">
       <PhaseBadge phase="srsSchedule" />
-      <h2 className="text-lg font-medium">
-        Spaced repetition scheduling: what happens after
-      </h2>
-      <p className="text-sm leading-relaxed text-muted-foreground">
-        Everything you just learned enters a{" "}
-        <strong className="text-foreground">spaced repetition queue</strong>.
-        Items you got wrong come back sooner. This produces 200%+ better
-        long-term retention than restudying.
+      <h2 className="text-lg font-medium">Review schedule</h2>
+      <p className="text-sm text-muted-foreground">
+        These concepts are scheduled for review to strengthen retention.
       </p>
-      <div className="flex gap-2">
-        <ScienceTag label="Spaced repetition (FSRS)" />
-        <ScienceTag label="Forgetting curve" />
-      </div>
 
       <div className="space-y-2">
         {items.map((item) => (

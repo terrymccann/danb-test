@@ -2,7 +2,6 @@
 
 import { useLearnStore } from "@/stores/learn-store"
 import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { ScienceTag } from "@/components/learn/ScienceTag"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -30,15 +29,7 @@ export function PhaseTeachBack() {
   return (
     <div className="space-y-4">
       <PhaseBadge phase="teachBack" />
-      <h2 className="text-lg font-medium">Teach-back: the Feynman technique</h2>
-      <p className="text-sm leading-relaxed text-muted-foreground">
-        Explaining concepts to others produces an effect size of g = 0.55 — you
-        learn more by teaching than by restudying.
-      </p>
-      <div className="flex gap-2">
-        <ScienceTag label="Generation effect" />
-        <ScienceTag label="Feynman technique" />
-      </div>
+      <h2 className="text-lg font-medium">Explain it back</h2>
 
       <div className="rounded-md border-l-3 border-violet-500 bg-violet-50 p-4 text-sm leading-relaxed text-violet-900 dark:bg-violet-950 dark:text-violet-100">
         <strong>Teach-back prompt:</strong>

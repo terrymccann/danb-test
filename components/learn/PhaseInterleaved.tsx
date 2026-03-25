@@ -2,7 +2,6 @@
 
 import { useLearnStore } from "@/stores/learn-store"
 import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { ScienceTag } from "@/components/learn/ScienceTag"
 import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
@@ -27,22 +26,7 @@ export function PhaseInterleaved() {
   return (
     <div className="space-y-4">
       <PhaseBadge phase="interleaved" />
-      <h2 className="text-lg font-medium">
-        Interleaved practice: mixing topics forces discrimination
-      </h2>
-      <p className="text-sm leading-relaxed text-muted-foreground">
-        This platform deliberately{" "}
-        <strong className="text-foreground">
-          mixes topics from different CDA domains
-        </strong>{" "}
-        so you must first identify which area of knowledge applies. Research
-        shows interleaving produces 3× better delayed retention despite feeling
-        harder.
-      </p>
-      <div className="flex gap-2">
-        <ScienceTag label="Interleaving" />
-        <ScienceTag label="Desirable difficulties" />
-      </div>
+      <h2 className="text-lg font-medium">Mixed-domain practice</h2>
 
       <div className="rounded-md bg-muted p-4 text-sm leading-relaxed">
         <div className="mb-2">

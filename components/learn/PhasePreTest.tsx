@@ -2,7 +2,6 @@
 
 import { useLearnStore } from "@/stores/learn-store"
 import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { ScienceTag } from "@/components/learn/ScienceTag"
 import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { cn } from "@/lib/utils"
 
@@ -25,22 +24,7 @@ export function PhasePreTest() {
   return (
     <div className="space-y-4">
       <PhaseBadge phase="preTest" />
-      <h2 className="text-lg font-medium">
-        Pre-test: what do you already know?
-      </h2>
-      <p className="text-sm leading-relaxed text-muted-foreground">
-        Before any teaching happens, you answer a question cold. This isn&apos;t
-        to grade you — it&apos;s because{" "}
-        <strong className="text-foreground">
-          attempting retrieval before learning
-        </strong>{" "}
-        primes your brain to encode the answer more deeply when you see it, even
-        if you get it wrong.
-      </p>
-      <div className="flex gap-2">
-        <ScienceTag label="Retrieval practice" />
-        <ScienceTag label="Pre-testing effect" />
-      </div>
+      <h2 className="text-lg font-medium">Pre-test</h2>
 
       <div
         className="rounded-md bg-muted p-4 text-sm leading-relaxed"

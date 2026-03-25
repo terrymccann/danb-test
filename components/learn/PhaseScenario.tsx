@@ -2,7 +2,6 @@
 
 import { useLearnStore } from "@/stores/learn-store"
 import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { ScienceTag } from "@/components/learn/ScienceTag"
 import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { ConfidenceSelector } from "@/components/learn/ConfidenceSelector"
 import { cn } from "@/lib/utils"
@@ -31,22 +30,7 @@ export function PhaseScenario() {
   return (
     <div className="space-y-4">
       <PhaseBadge phase="scenario" />
-      <h2 className="text-lg font-medium">
-        Scenario vignette: applied clinical judgment
-      </h2>
-      <p className="text-sm leading-relaxed text-muted-foreground">
-        Now you face a realistic clinical scenario. First, rate your confidence
-        —{" "}
-        <strong className="text-foreground">
-          high-confidence errors corrected with feedback create the strongest
-          memories
-        </strong>
-        .
-      </p>
-      <div className="flex gap-2">
-        <ScienceTag label="Scenario-based learning" />
-        <ScienceTag label="Hypercorrection effect" />
-      </div>
+      <h2 className="text-lg font-medium">Clinical scenario</h2>
 
       <div className="rounded-md bg-muted p-4">
         <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
