@@ -41,6 +41,12 @@ import gcPediatric from "@/data/learn/gc-pediatric.json"
 import gcDentalDam from "@/data/learn/gc-dental-dam.json"
 import gcTraySetup from "@/data/learn/gc-tray-setup.json"
 import gcImpressions from "@/data/learn/gc-impressions.json"
+import gcTemporaries from "@/data/learn/gc-temporaries.json"
+import rhsOcclusalPanoramic from "@/data/learn/rhs-occlusal-panoramic.json"
+import rhsFilmProcessing from "@/data/learn/rhs-film-processing.json"
+import rhsImageEvaluation from "@/data/learn/rhs-image-evaluation.json"
+import rhsDoseLimits from "@/data/learn/rhs-dose-limits.json"
+import iceInstrumentCleaning from "@/data/learn/ice-instrument-cleaning.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -84,6 +90,12 @@ const sessions: Record<string, LearningSession> = {
   "gc-dental-dam": gcDentalDam as unknown as LearningSession,
   "gc-tray-setup": gcTraySetup as unknown as LearningSession,
   "gc-impressions": gcImpressions as unknown as LearningSession,
+  "gc-temporaries": gcTemporaries as unknown as LearningSession,
+  "rhs-occlusal-panoramic": rhsOcclusalPanoramic as unknown as LearningSession,
+  "rhs-film-processing": rhsFilmProcessing as unknown as LearningSession,
+  "rhs-image-evaluation": rhsImageEvaluation as unknown as LearningSession,
+  "rhs-dose-limits": rhsDoseLimits as unknown as LearningSession,
+  "ice-instrument-cleaning": iceInstrumentCleaning as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {

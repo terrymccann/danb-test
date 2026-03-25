@@ -220,7 +220,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-temporaries",
             "Temporary Materials & Waxes",
             "gc",
-            "Dental Materials"
+            "Dental Materials",
+            true
           ),
         ],
       },
@@ -261,7 +262,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-occlusal-panoramic",
             "Occlusal & Panoramic Radiography",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-digital",
@@ -274,13 +276,15 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-film-processing",
             "Film Processing & Darkroom Procedures",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-image-evaluation",
             "Image Evaluation & Mounting",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-anatomical-landmarks",
@@ -324,7 +328,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-dose-limits",
             "Dose Limits & ALARA Principle",
             "rhs",
-            "Radiation Characteristics and Protection"
+            "Radiation Characteristics and Protection",
+            true
           ),
           s(
             "rhs-protective-equipment",
@@ -471,7 +476,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-instrument-cleaning",
             "Instrument Cleaning Methods",
             "ice",
-            "Process Instruments and Devices"
+            "Process Instruments and Devices",
+            true
           ),
           s(
             "ice-sterilization-methods",
