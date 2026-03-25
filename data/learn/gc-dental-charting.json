@@ -45,14 +45,14 @@
       "domainLabel": "Radiation Health &amp; Safety",
       "question": "A patient presents with a concern about sensitivity between teeth #4 and #5. The dentist suspects interproximal (between the teeth) caries. Which radiographic view is <strong>most appropriate</strong> for detecting this type of decay?",
       "options": [
-        { "id": "a", "text": "Periapical radiograph of the maxillary left premolar region" },
+        { "id": "a", "text": "Periapical radiograph of the maxillary right premolar region" },
         { "id": "b", "text": "Panoramic radiograph" },
-        { "id": "c", "text": "Bitewing radiograph of the maxillary left premolar region" },
+        { "id": "c", "text": "Bitewing radiograph of the maxillary right premolar region" },
         { "id": "d", "text": "Occlusal radiograph of the maxillary arch" }
       ],
       "correctOptionId": "c",
-      "feedbackCorrect": "<strong>Correct.</strong> Bitewing radiographs are the gold standard for detecting <strong>interproximal caries</strong> — decay that forms between adjacent teeth where the beam passes directly through the contact point. They also show the crestal bone level. Periapical films show the full tooth and root but are less ideal for interproximal caries detection than bitewings. Note that teeth #4 and #5 are the <em>maxillary left first and second premolars</em> in the Universal system — this question also reinforces your tooth numbering!",
-      "feedbackIncorrect": "<strong>This is the power of interleaving.</strong> The answer is <strong>C — bitewing radiograph</strong>. This question deliberately jumped from dental charting into Radiation Health &amp; Safety. That mental gear-shift is exactly what the CDA exam demands. For interproximal caries, bitewings are always the first choice: the central beam passes through the contact area, revealing decay that is invisible clinically. Bonus review: teeth #4 and #5 = maxillary left first and second premolars in the Universal system."
+      "feedbackCorrect": "<strong>Correct.</strong> Bitewing radiographs are the gold standard for detecting <strong>interproximal caries</strong> — decay that forms between adjacent teeth where the beam passes directly through the contact point. They also show the crestal bone level. Periapical films show the full tooth and root but are less ideal for interproximal caries detection than bitewings. Note that teeth #4 and #5 are the <em>maxillary right second and first premolars</em> in the Universal system — this question also reinforces your tooth numbering!",
+      "feedbackIncorrect": "<strong>This is the power of interleaving.</strong> The answer is <strong>C — bitewing radiograph</strong>. This question deliberately jumped from dental charting into Radiation Health &amp; Safety. That mental gear-shift is exactly what the CDA exam demands. For interproximal caries, bitewings are always the first choice: the central beam passes through the contact area, revealing decay that is invisible clinically. Bonus review: teeth #4 and #5 = maxillary right second and first premolars in the Universal system."
     },
     "teachBack": {
       "prompt": "A patient asks you: \"Why does the dentist keep calling out numbers and letters during my exam? What are they writing down?\" In 2–3 sentences, explain dental charting and tooth numbering in plain, friendly language — no technical jargon.",

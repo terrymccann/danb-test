@@ -13,9 +13,9 @@
         { "id": "c", "text": "4 o'clock to 7 o'clock" },
         { "id": "d", "text": "7 o'clock to 12 o'clock" }
       ],
-      "correctOptionId": "c",
-      "feedbackCorrect": "<strong>Correct.</strong> You already have a head start on this topic. The teaching phase will deepen and connect what you know.",
-      "feedbackIncorrect": "<strong>That's not right — and that's the point.</strong> Most learners get pre-test questions wrong. Research by Richland, Kornell & Kao (2009) showed that even unsuccessful retrieval attempts boost later learning by 20–40%. Your brain just flagged this as a gap. Now it will pay closer attention when the content is taught."
+      "correctOptionId": "b",
+      "feedbackCorrect": "<strong>Correct.</strong> The assistant's zone is 2–4 o'clock for a right-handed operator. The teaching phase will deepen and connect what you know.",
+      "feedbackIncorrect": "<strong>That's not right.</strong> The assistant's zone is <strong>2–4 o'clock</strong> (not 4–7, which is the transfer zone). The teaching phase will clarify all four zones."
     },
     "content": {
       "conceptTitle": "Four-Handed Dentistry: Zones, Transfer, and Ergonomics",
