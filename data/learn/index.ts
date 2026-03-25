@@ -58,8 +58,9 @@ export const domainConfigs: DomainLearnConfig[] = [
             "Evaluation",
             true
           ),
-          s("gc-head-neck-anatomy", "Head & Neck Anatomy", "gc", "Evaluation"),
-          s("gc-occlusion", "Occlusion & Malocclusion", "gc", "Evaluation"),
+          s("gc-head-neck-anatomy", "Head & Neck Anatomy", "gc", "Evaluation",
+            true),
+          s("gc-occlusion", "Occlusion & Malocclusion", "gc", "Evaluation", true),
           s(
             "gc-medical-emergencies",
             "Medical Emergencies in the Dental Office",
@@ -122,7 +123,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-restorative",
             "Restorative Procedures",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-endodontic",
@@ -252,7 +254,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-digital",
             "Digital Radiography",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-film-processing",
@@ -362,7 +365,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-chain-of-infection",
             "Chain of Infection & Modes of Transmission",
             "ice",
-            "Prevention of Disease Transmission"
+            "Prevention of Disease Transmission",
+            true
           ),
           s(
             "ice-standard-precautions",
@@ -456,7 +460,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-sterilization-methods",
             "Sterilization Methods",
             "ice",
-            "Process Instruments and Devices"
+            "Process Instruments and Devices",
+            true
           ),
           s(
             "ice-sterilization-monitoring",

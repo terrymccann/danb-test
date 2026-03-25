@@ -17,6 +17,12 @@ import gcMedicalEmergencies from "@/data/learn/gc-medical-emergencies.json"
 import gcCements from "@/data/learn/gc-cements.json"
 import rhsBitewing from "@/data/learn/rhs-bitewing.json"
 import icePpe from "@/data/learn/ice-ppe.json"
+import gcHeadNeckAnatomy from "@/data/learn/gc-head-neck-anatomy.json"
+import gcOcclusion from "@/data/learn/gc-occlusion.json"
+import gcRestorative from "@/data/learn/gc-restorative.json"
+import rhsDigital from "@/data/learn/rhs-digital.json"
+import iceChainOfInfection from "@/data/learn/ice-chain-of-infection.json"
+import iceSterilizationMethods from "@/data/learn/ice-sterilization-methods.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -36,6 +42,12 @@ const sessions: Record<string, LearningSession> = {
   "gc-cements": gcCements as unknown as LearningSession,
   "rhs-bitewing": rhsBitewing as unknown as LearningSession,
   "ice-ppe": icePpe as unknown as LearningSession,
+  "gc-head-neck-anatomy": gcHeadNeckAnatomy as unknown as LearningSession,
+  "gc-occlusion": gcOcclusion as unknown as LearningSession,
+  "gc-restorative": gcRestorative as unknown as LearningSession,
+  "rhs-digital": rhsDigital as unknown as LearningSession,
+  "ice-chain-of-infection": iceChainOfInfection as unknown as LearningSession,
+  "ice-sterilization-methods": iceSterilizationMethods as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {
