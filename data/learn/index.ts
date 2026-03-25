@@ -48,7 +48,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-dental-charting",
             "Dental Charting & Tooth Numbering",
             "gc",
-            "Evaluation"
+            "Evaluation",
+            true
           ),
           s(
             "gc-tooth-anatomy",
@@ -112,7 +113,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-instrument-id",
             "Instrument Identification & Function",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-restorative",
@@ -186,7 +188,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-composite",
             "Composite & Bonding Systems",
             "gc",
-            "Dental Materials"
+            "Dental Materials",
+            true
           ),
           s("gc-cements", "Dental Cements & Liners", "gc", "Dental Materials"),
           s(
@@ -226,7 +229,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-bisecting",
             "Bisecting Angle Technique",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-bitewing",
@@ -360,7 +364,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-standard-precautions",
             "Standard Precautions & Hand Hygiene",
             "ice",
-            "Prevention of Disease Transmission"
+            "Prevention of Disease Transmission",
+            true
           ),
           s(
             "ice-ppe",
