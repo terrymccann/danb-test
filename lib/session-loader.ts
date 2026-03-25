@@ -23,6 +23,12 @@ import gcRestorative from "@/data/learn/gc-restorative.json"
 import rhsDigital from "@/data/learn/rhs-digital.json"
 import iceChainOfInfection from "@/data/learn/ice-chain-of-infection.json"
 import iceSterilizationMethods from "@/data/learn/ice-sterilization-methods.json"
+import gcLegalCompliance from "@/data/learn/gc-legal-compliance.json"
+import gcHipaa from "@/data/learn/gc-hipaa.json"
+import gcPatientCommunication from "@/data/learn/gc-patient-communication.json"
+import rhsRadiationPhysics from "@/data/learn/rhs-radiation-physics.json"
+import iceSurfaceDisinfection from "@/data/learn/ice-surface-disinfection.json"
+import iceSterilizationMonitoring from "@/data/learn/ice-sterilization-monitoring.json"
 
 const sessions: Record<string, LearningSession> = {
   "ice-spaulding-classification": iceSpaulding as unknown as LearningSession,
@@ -48,6 +54,12 @@ const sessions: Record<string, LearningSession> = {
   "rhs-digital": rhsDigital as unknown as LearningSession,
   "ice-chain-of-infection": iceChainOfInfection as unknown as LearningSession,
   "ice-sterilization-methods": iceSterilizationMethods as unknown as LearningSession,
+  "gc-legal-compliance": gcLegalCompliance as unknown as LearningSession,
+  "gc-hipaa": gcHipaa as unknown as LearningSession,
+  "gc-patient-communication": gcPatientCommunication as unknown as LearningSession,
+  "rhs-radiation-physics": rhsRadiationPhysics as unknown as LearningSession,
+  "ice-surface-disinfection": iceSurfaceDisinfection as unknown as LearningSession,
+  "ice-sterilization-monitoring": iceSterilizationMonitoring as unknown as LearningSession,
 }
 
 export function loadSession(sessionId: string): LearningSession | null {

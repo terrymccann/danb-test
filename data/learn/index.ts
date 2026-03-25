@@ -85,19 +85,22 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-legal-compliance",
             "Legal & Regulatory Compliance",
             "gc",
-            "Patient Management & Administration"
+            "Patient Management & Administration",
+            true
           ),
           s(
             "gc-hipaa",
             "HIPAA & Patient Records",
             "gc",
-            "Patient Management & Administration"
+            "Patient Management & Administration",
+            true
           ),
           s(
             "gc-patient-communication",
             "Patient Communication & Behavior Management",
             "gc",
-            "Patient Management & Administration"
+            "Patient Management & Administration",
+            true
           ),
         ],
       },
@@ -297,7 +300,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-radiation-physics",
             "Radiation Physics Fundamentals",
             "rhs",
-            "Radiation Characteristics and Protection"
+            "Radiation Characteristics and Protection",
+            true
           ),
           s(
             "rhs-biological-effects",
@@ -398,7 +402,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-surface-disinfection",
             "Surface Disinfection Protocols",
             "ice",
-            "Prevention of Cross-Contamination"
+            "Prevention of Cross-Contamination",
+            true
           ),
           s(
             "ice-barrier-techniques",
@@ -467,7 +472,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "ice-sterilization-monitoring",
             "Sterilization Monitoring",
             "ice",
-            "Process Instruments and Devices"
+            "Process Instruments and Devices",
+            true
           ),
           s(
             "ice-instrument-packaging",
