@@ -65,8 +65,13 @@ Evaluate the student's response.`,
       ],
     })
 
-    const text =
+    const rawText =
       message.content[0].type === "text" ? message.content[0].text : ""
+    // Strip markdown code fences if present
+    const text = rawText
+      .replace(/^```(?:json)?\s*\n?/i, "")
+      .replace(/\n?\s*```\s*$/i, "")
+      .trim()
 
     let evaluation
     try {
