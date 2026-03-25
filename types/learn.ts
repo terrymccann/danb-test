@@ -98,6 +98,21 @@ export interface SessionMeta {
   topic: string
   estimatedMinutes: number
   scienceTags: string[]
+  available: boolean
+}
+
+export interface SubDomainGroup {
+  name: string
+  examWeight: string
+  sessions: SessionMeta[]
+}
+
+export interface DomainLearnConfig {
+  domain: ExamType
+  title: string
+  code: string
+  examDetails: string
+  subDomains: SubDomainGroup[]
 }
 
 export interface TeachBackEvaluation {
