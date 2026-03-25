@@ -79,7 +79,7 @@ Each session is a 7-phase deep dive into a single concept (~10–15 min). Sessio
 
 ---
 
-## ICE — Infection Control (18 sessions)
+## ICE — Infection Control (22 sessions)
 
 ### I. Prevention of Disease Transmission (20%)
 
@@ -123,8 +123,8 @@ Each session is a 7-phase deep dive into a single concept (~10–15 min). Sessio
 |--------|-------------|----------|-------------|
 | GC — General Chairside | 4 | 28 | 95 questions / 75 min |
 | RHS — Radiation Health & Safety | 3 | 18 | 75 questions / 60 min |
-| ICE — Infection Control | 4 | 18 | 75 questions / 60 min |
-| **Total** | **11** | **64** | **245 questions / 195 min** |
+| ICE — Infection Control | 4 | 22 | 75 questions / 60 min |
+| **Total** | **11** | **68** | **245 questions / 195 min** |
 
 ### Cross-domain connections
 
