@@ -41,7 +41,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-medical-history",
             "Medical History Review & Risk Assessment",
             "gc",
-            "Evaluation"
+            "Evaluation",
+            true
           ),
           s(
             "gc-dental-charting",
@@ -73,7 +74,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-oral-health-education",
             "Oral Health Education & Prevention",
             "gc",
-            "Patient Management & Administration"
+            "Patient Management & Administration",
+            true
           ),
           s(
             "gc-legal-compliance",
@@ -103,7 +105,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-four-handed",
             "Four-Handed Dentistry & Ergonomics",
             "gc",
-            "Chairside Dentistry"
+            "Chairside Dentistry",
+            true
           ),
           s(
             "gc-instrument-id",
@@ -176,7 +179,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "gc-amalgam",
             "Amalgam & Direct Restorative Materials",
             "gc",
-            "Dental Materials"
+            "Dental Materials",
+            true
           ),
           s(
             "gc-composite",
@@ -215,7 +219,8 @@ export const domainConfigs: DomainLearnConfig[] = [
             "rhs-paralleling",
             "Paralleling Technique",
             "rhs",
-            "Purpose and Technique"
+            "Purpose and Technique",
+            true
           ),
           s(
             "rhs-bisecting",
