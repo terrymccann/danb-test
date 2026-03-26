@@ -4,12 +4,22 @@ import { Progress as ProgressPrimitive } from "@base-ui/react/progress"
 
 import { cn } from "@/lib/utils"
 
+type ProgressVariant = "default" | "gc" | "rhs" | "ice"
+
+const variantClasses: Record<ProgressVariant, string> = {
+  default: "bg-primary",
+  gc: "bg-domain-gc",
+  rhs: "bg-domain-rhs",
+  ice: "bg-domain-ice",
+}
+
 function Progress({
   className,
   children,
   value,
+  variant = "default",
   ...props
-}: ProgressPrimitive.Root.Props) {
+}: ProgressPrimitive.Root.Props & { variant?: ProgressVariant }) {
   return (
     <ProgressPrimitive.Root
       value={value}
@@ -19,7 +29,7 @@ function Progress({
     >
       {children}
       <ProgressTrack>
-        <ProgressIndicator />
+        <ProgressIndicator variant={variant} />
       </ProgressTrack>
     </ProgressPrimitive.Root>
   )
@@ -40,12 +50,17 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
 
 function ProgressIndicator({
   className,
+  variant = "default",
   ...props
-}: ProgressPrimitive.Indicator.Props) {
+}: ProgressPrimitive.Indicator.Props & { variant?: ProgressVariant }) {
   return (
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
-      className={cn("h-full bg-primary transition-all", className)}
+      className={cn(
+        "h-full transition-all",
+        variantClasses[variant],
+        className
+      )}
       {...props}
     />
   )
