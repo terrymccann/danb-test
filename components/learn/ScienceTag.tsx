@@ -6,7 +6,7 @@ interface ScienceTagProps {
 
 export function ScienceTag({ label }: ScienceTagProps) {
   return (
-    <Badge variant="secondary" className="text-xs font-medium">
+    <Badge variant="secondary" className="text-xs font-medium rounded-lg">
       {label}
     </Badge>
   )

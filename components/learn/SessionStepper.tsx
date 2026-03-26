@@ -1,7 +1,7 @@
 "use client"
 
 import { useLearnStore, PHASE_ORDER } from "@/stores/learn-store"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { PhasePreTest } from "@/components/learn/PhasePreTest"
 import { PhaseContent } from "@/components/learn/PhaseContent"
 import { PhaseElaboration } from "@/components/learn/PhaseElaboration"
@@ -10,7 +10,19 @@ import { PhaseInterleaved } from "@/components/learn/PhaseInterleaved"
 import { PhaseTeachBack } from "@/components/learn/PhaseTeachBack"
 import { PhaseSRS } from "@/components/learn/PhaseSRS"
 import type { PhaseKey } from "@/types/learn"
-import Link from "next/link"
+import {
+  ClipboardCheck,
+  BookOpen,
+  Lightbulb,
+  MessageSquare,
+  Shuffle,
+  Mic,
+  Calendar,
+  Check,
+  Menu,
+} from "lucide-react"
+import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 const PHASE_COMPONENTS: Record<PhaseKey, React.ComponentType> = {
   preTest: PhasePreTest,
@@ -22,20 +34,21 @@ const PHASE_COMPONENTS: Record<PhaseKey, React.ComponentType> = {
   srsSchedule: PhaseSRS,
 }
 
-const NEXT_LABELS: Record<PhaseKey, string> = {
-  preTest: "Continue to teaching phase",
-  content: "Continue to elaboration",
-  elaboration: "Continue to scenario practice",
-  scenario: "Continue to interleaved practice",
-  interleaved: "Continue to teach-back",
-  teachBack: "Continue to SRS scheduling",
-  srsSchedule: "",
+const PHASE_META: Record<PhaseKey, { icon: React.ComponentType<{ className?: string }>; label: string }> = {
+  preTest: { icon: ClipboardCheck, label: "Pre-Test" },
+  content: { icon: BookOpen, label: "Content" },
+  elaboration: { icon: Lightbulb, label: "Elaboration" },
+  scenario: { icon: MessageSquare, label: "Scenario" },
+  interleaved: { icon: Shuffle, label: "Interleaved" },
+  teachBack: { icon: Mic, label: "Teach-Back" },
+  srsSchedule: { icon: Calendar, label: "SRS Schedule" },
 }
 
-export function SessionStepper() {
-  const session = useLearnStore((s) => s.session)
+function PhaseStepper() {
   const currentPhase = useLearnStore((s) => s.currentPhase)
   const phaseIndex = useLearnStore((s) => s.phaseIndex)
+  const goToPhase = useLearnStore((s) => s.goToPhase)
+  const nextPhase = useLearnStore((s) => s.nextPhase)
   const canAdvanceValue = useLearnStore((s) => {
     switch (s.currentPhase) {
       case "preTest":
@@ -54,78 +67,98 @@ export function SessionStepper() {
         return false
     }
   })
-  const nextPhase = useLearnStore((s) => s.nextPhase)
-  const prevPhase = useLearnStore((s) => s.prevPhase)
-  const reset = useLearnStore((s) => s.reset)
+
+  return (
+    <div className="flex flex-col h-full">
+      <nav className="flex-1 space-y-1 p-4">
+        {PHASE_ORDER.map((phase, idx) => {
+          const meta = PHASE_META[phase]
+          const Icon = meta.icon
+          const isCurrent = phase === currentPhase
+          const isCompleted = idx < phaseIndex
+          const isFuture = idx > phaseIndex
+          const canClick = isCompleted // can only jump back to completed phases
+
+          return (
+            <button
+              key={phase}
+              type="button"
+              disabled={isFuture}
+              onClick={() => canClick && goToPhase(phase)}
+              className={cn(
+                "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors text-left",
+                isCurrent && "text-primary font-semibold bg-primary/5",
+                isCompleted && "text-[color:var(--success,hsl(142_71%_45%))] cursor-pointer hover:bg-muted/50",
+                isFuture && "text-muted-foreground cursor-default"
+              )}
+            >
+              {isCompleted ? (
+                <Check className="h-4 w-4 shrink-0" />
+              ) : (
+                <Icon className="h-4 w-4 shrink-0" />
+              )}
+              <span>{meta.label}</span>
+            </button>
+          )
+        })}
+      </nav>
+
+      <div className="border-t p-4">
+        <Button
+          onClick={nextPhase}
+          disabled={!canAdvanceValue}
+          className="w-full"
+        >
+          Continue
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export function SessionStepper() {
+  const session = useLearnStore((s) => s.session)
+  const currentPhase = useLearnStore((s) => s.currentPhase)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   if (!session) return null
 
   const PhaseComponent = PHASE_COMPONENTS[currentPhase]
-  const progressPercent = Math.round(
-    ((phaseIndex + 1) / PHASE_ORDER.length) * 100
-  )
-  const isLastPhase = currentPhase === "srsSchedule"
-  const isFirstPhase = phaseIndex === 0
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Progress bar + step counter */}
-      <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto max-w-3xl px-4 py-3">
-          <div className="mb-2 h-1 w-full overflow-hidden rounded-full bg-muted">
-            <div
-              className="h-full rounded-full bg-primary transition-all duration-300"
-              style={{ width: `${progressPercent}%` }}
-            />
-          </div>
-          <p className="text-xs text-muted-foreground">
-            Step {phaseIndex + 1} of {PHASE_ORDER.length} — {session.title}
-          </p>
+    <div className="flex min-h-[calc(100vh-3.5rem)]">
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:border-r bg-background">
+        <div className="border-b px-4 py-3">
+          <p className="text-sm font-medium truncate">{session.title}</p>
         </div>
-      </div>
+        <PhaseStepper />
+      </aside>
 
-      {/* Phase content */}
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
+      {/* Main content */}
+      <main className="flex-1 max-w-3xl mx-auto px-4 py-8">
+        {/* Mobile phase stepper trigger */}
+        <div className="lg:hidden mb-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="gap-2"
+          >
+            <Menu className="h-4 w-4" />
+            Phases
+          </Button>
+
+          {mobileOpen && (
+            <div className="mt-2 rounded-lg border bg-background shadow-lg">
+              <PhaseStepper />
+            </div>
+          )}
+        </div>
+
+        {/* Current phase content */}
         <PhaseComponent />
       </main>
-
-      {/* Navigation */}
-      <div className="border-t bg-background">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
-          {!isFirstPhase ? (
-            <Button variant="outline" onClick={prevPhase}>
-              Back
-            </Button>
-          ) : (
-            <div />
-          )}
-
-          {isLastPhase ? (
-            <div className="flex gap-2">
-              <Link
-                href={`/learn/${session.domain}`}
-                className={buttonVariants({ variant: "outline" })}
-                onClick={reset}
-              >
-                Back to Sessions
-              </Link>
-              <Button
-                onClick={() => {
-                  // reset() sets session to null, which triggers the page's
-                  // useEffect to re-load and call startSession() on next render
-                  reset()
-                }}
-              >
-                Restart
-              </Button>
-            </div>
-          ) : (
-            <Button onClick={nextPhase} disabled={!canAdvanceValue}>
-              {NEXT_LABELS[currentPhase]}
-            </Button>
-          )}
-        </div>
-      </div>
     </div>
   )
 }

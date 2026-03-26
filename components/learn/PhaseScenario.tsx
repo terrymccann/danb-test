@@ -1,7 +1,7 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
-import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { Card, CardContent } from "@/components/ui/card"
 import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { ConfidenceSelector } from "@/components/learn/ConfidenceSelector"
 import { cn } from "@/lib/utils"
@@ -28,19 +28,17 @@ export function PhaseScenario() {
   const confidenceSelected = scenarioConfidence !== null
 
   return (
-    <div className="space-y-4">
-      <PhaseBadge phase="scenario" />
-      <h2 className="text-lg font-medium">Clinical scenario</h2>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold">Clinical Scenario</h2>
 
-      <div className="rounded-md bg-muted p-4">
-        <p className="mb-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-          Clinical Scenario
-        </p>
-        <div
-          className="text-sm leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: scenarioText }}
-        />
-      </div>
+      <Card>
+        <CardContent className="pt-6">
+          <div
+            className="text-sm leading-relaxed italic"
+            dangerouslySetInnerHTML={{ __html: scenarioText }}
+          />
+        </CardContent>
+      </Card>
 
       <ConfidenceSelector
         selected={scenarioConfidence}
@@ -48,27 +46,19 @@ export function PhaseScenario() {
       />
 
       <div
-        className="rounded-md bg-muted p-4 text-sm"
+        className="text-sm leading-relaxed"
         dangerouslySetInnerHTML={{ __html: question }}
       />
 
       <div
         className={cn(
-          "space-y-2",
+          "space-y-3",
           !confidenceSelected && "pointer-events-none opacity-50"
         )}
       >
         {options.map((option) => {
           const isSelected = scenarioAnswer === option.id
           const isCorrect = option.id === correctOptionId
-          let variant = ""
-          if (answered) {
-            if (isCorrect)
-              variant = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950"
-            else if (isSelected)
-              variant = "border-red-500 bg-red-50 dark:bg-red-950"
-            else variant = "opacity-50"
-          }
 
           return (
             <button
@@ -77,11 +67,13 @@ export function PhaseScenario() {
               disabled={answered || !confidenceSelected}
               onClick={() => answerScenario(option.id)}
               className={cn(
-                "w-full rounded-md border p-3 text-left text-sm leading-relaxed transition-colors",
+                "w-full rounded-lg border p-4 text-left text-sm leading-relaxed transition-colors",
                 !answered &&
                   confidenceSelected &&
-                  "hover:border-primary hover:bg-muted/50",
-                answered ? variant : ""
+                  "hover:border-primary hover:bg-muted/50 cursor-pointer",
+                answered && isCorrect && "border-green-500 bg-green-50 dark:bg-green-950/30",
+                answered && isSelected && !isCorrect && "border-red-500 bg-red-50 dark:bg-red-950/30",
+                answered && !isSelected && !isCorrect && "opacity-50"
               )}
             >
               {option.text}
@@ -90,15 +82,23 @@ export function PhaseScenario() {
         })}
       </div>
 
-      <FeedbackBox variant="correct" show={answered && !!scenarioCorrect}>
-        <span dangerouslySetInnerHTML={{ __html: feedbackCorrect }} />
-      </FeedbackBox>
-      <FeedbackBox variant="incorrect" show={answered && !scenarioCorrect}>
-        <span dangerouslySetInnerHTML={{ __html: feedbackIncorrect }} />
-      </FeedbackBox>
-      <FeedbackBox variant="detail" show={answered}>
-        <span dangerouslySetInnerHTML={{ __html: detailedExplanation }} />
-      </FeedbackBox>
+      {answered && scenarioCorrect !== null && (
+        <FeedbackBox
+          isCorrect={scenarioCorrect}
+          feedback={scenarioCorrect ? feedbackCorrect : feedbackIncorrect}
+        />
+      )}
+
+      {answered && (
+        <Card>
+          <CardContent className="pt-6">
+            <div
+              className="text-sm leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: detailedExplanation }}
+            />
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }
