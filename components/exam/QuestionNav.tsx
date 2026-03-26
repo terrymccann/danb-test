@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ChevronLeft, ChevronRight, Send } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,8 +37,8 @@ export function QuestionNav() {
   }
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex gap-2">
+    <div>
+      <div className="flex justify-between items-center">
         <Button
           variant="outline"
           onClick={prevQuestion}
@@ -48,51 +48,59 @@ export function QuestionNav() {
           <ChevronLeft className="h-4 w-4" />
           Previous
         </Button>
-        <Button
-          variant="outline"
-          onClick={nextQuestion}
-          disabled={isLast}
-          className="gap-1"
-        >
-          Next
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-      </div>
 
-      <AlertDialog>
-        <AlertDialogTrigger
-          render={<Button variant="default" className="gap-2" />}
-        >
-          <Send className="h-4 w-4" />
-          Submit Exam
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Submit Exam?</AlertDialogTitle>
-            <AlertDialogDescription>
-              {unansweredCount > 0 ? (
-                <>
-                  You have{" "}
-                  <span className="font-semibold text-destructive">
-                    {unansweredCount} unanswered{" "}
-                    {unansweredCount === 1 ? "question" : "questions"}
-                  </span>
-                  . Unanswered questions will be marked incorrect.
-                </>
-              ) : (
-                "You have answered all questions."
-              )}{" "}
-              Are you sure you want to submit?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Continue Exam</AlertDialogCancel>
-            <AlertDialogAction onClick={handleSubmit}>
-              Submit Exam
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        <span className="text-sm text-muted-foreground">
+          Question {currentIndex + 1} of {questions.length}
+        </span>
+
+        {isLast ? (
+          <AlertDialog>
+            <AlertDialogTrigger
+              render={<Button variant="default" className="gap-1" />}
+            >
+              Review & Submit
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Submit Exam?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {unansweredCount > 0 ? (
+                    <>
+                      You have{" "}
+                      <span className="font-semibold text-destructive">
+                        {unansweredCount} unanswered{" "}
+                        {unansweredCount === 1 ? "question" : "questions"}
+                      </span>
+                      . Unanswered questions will be marked incorrect.
+                    </>
+                  ) : (
+                    "You have answered all questions."
+                  )}{" "}
+                  Are you sure you want to submit?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Continue Exam</AlertDialogCancel>
+                <AlertDialogAction onClick={handleSubmit}>
+                  Submit Exam
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        ) : (
+          <Button
+            variant="outline"
+            onClick={nextQuestion}
+            className="gap-1"
+          >
+            Next
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
+      <p className="text-xs text-muted-foreground text-center mt-2">
+        Use arrow keys to navigate
+      </p>
     </div>
   )
 }
