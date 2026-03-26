@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from "@/components/layout/Navbar"
 import { cn } from "@/lib/utils"
 
 const fontSans = Geist({
@@ -39,7 +40,10 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <div className="min-h-screen bg-background">{children}</div>
+          <div className="min-h-screen bg-background">
+            <Navbar />
+            <div className="pt-14">{children}</div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
