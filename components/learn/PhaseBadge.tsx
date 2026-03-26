@@ -30,15 +30,10 @@ const PHASE_STYLES: Record<
     text: "text-orange-700 dark:text-orange-300",
     label: "Phase 5",
   },
-  teachBack: {
-    bg: "bg-violet-100 dark:bg-violet-950/50",
-    text: "text-violet-700 dark:text-violet-300",
-    label: "Phase 6",
-  },
   srsSchedule: {
     bg: "bg-green-100 dark:bg-green-950/50",
     text: "text-green-700 dark:text-green-300",
-    label: "Phase 7",
+    label: "Phase 6",
   },
 }
 

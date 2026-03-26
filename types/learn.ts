@@ -6,7 +6,6 @@ export type PhaseKey =
   | "elaboration"
   | "scenario"
   | "interleaved"
-  | "teachBack"
   | "srsSchedule"
 
 export type ConfidenceLevel =
@@ -59,11 +58,6 @@ export interface InterleavedPhase {
   feedbackIncorrect: string
 }
 
-export interface TeachBackPhase {
-  prompt: string
-  modelAnswer: string
-}
-
 export interface SRSItem {
   concept: string
   interval: string
@@ -86,7 +80,6 @@ export interface LearningSession {
     elaboration: ElaborationPhase
     scenario: ScenarioPhase
     interleaved: InterleavedPhase
-    teachBack: TeachBackPhase
     srsSchedule: SRSPhase
   }
 }
@@ -115,9 +108,3 @@ export interface DomainLearnConfig {
   subDomains: SubDomainGroup[]
 }
 
-export interface TeachBackEvaluation {
-  accuracy: "good" | "partial" | "missed"
-  completeness: number
-  feedback: string
-  missedConcepts: string[]
-}

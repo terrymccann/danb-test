@@ -3,7 +3,6 @@ import type {
   LearningSession,
   PhaseKey,
   ConfidenceLevel,
-  TeachBackEvaluation,
 } from "@/types/learn"
 
 const PHASE_ORDER: PhaseKey[] = [
@@ -12,7 +11,6 @@ const PHASE_ORDER: PhaseKey[] = [
   "elaboration",
   "scenario",
   "interleaved",
-  "teachBack",
   "srsSchedule",
 ]
 
@@ -33,12 +31,6 @@ interface LearnState {
 
   elaborationRevealed: boolean
 
-  teachBackResponse: string
-  teachBackEvaluation: TeachBackEvaluation | null
-  teachBackLoading: boolean
-  teachBackSubmitted: boolean
-  teachBackFailed: boolean
-
   startSession: (session: LearningSession) => void
   goToPhase: (phase: PhaseKey) => void
   nextPhase: () => void
@@ -50,9 +42,6 @@ interface LearnState {
   answerScenario: (optionId: string) => void
   answerInterleaved: (optionId: string) => void
   revealElaboration: () => void
-
-  setTeachBackResponse: (text: string) => void
-  submitTeachBack: () => Promise<void>
 
   reset: () => void
 }
@@ -74,12 +63,6 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
 
   elaborationRevealed: false,
 
-  teachBackResponse: "",
-  teachBackEvaluation: null,
-  teachBackLoading: false,
-  teachBackSubmitted: false,
-  teachBackFailed: false,
-
   startSession: (session) => {
     set({
       session,
@@ -93,11 +76,6 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       interleavedAnswer: null,
       interleavedCorrect: null,
       elaborationRevealed: false,
-      teachBackResponse: "",
-      teachBackEvaluation: null,
-      teachBackLoading: false,
-      teachBackSubmitted: false,
-      teachBackFailed: false,
     })
   },
 
@@ -140,8 +118,6 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
         )
       case "interleaved":
         return state.interleavedAnswer !== null
-      case "teachBack":
-        return state.teachBackResponse.trim().length > 0
       case "srsSchedule":
         return false // terminal phase
     }
@@ -183,47 +159,6 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
     set({ elaborationRevealed: true })
   },
 
-  setTeachBackResponse: (text) => {
-    set({ teachBackResponse: text })
-  },
-
-  submitTeachBack: async () => {
-    const { session, teachBackResponse, teachBackEvaluation } = get()
-    if (!session || teachBackEvaluation !== null) return
-
-    set({ teachBackLoading: true, teachBackSubmitted: true })
-
-    try {
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 15000)
-
-      const res = await fetch("/api/evaluate-teachback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userResponse: teachBackResponse,
-          prompt: session.phases.teachBack.prompt,
-          modelAnswer: session.phases.teachBack.modelAnswer,
-          sessionTopic: session.title,
-        }),
-        signal: controller.signal,
-      })
-
-      clearTimeout(timeoutId)
-
-      if (!res.ok) throw new Error("API error")
-
-      const evaluation: TeachBackEvaluation = await res.json()
-      evaluation.completeness = Math.max(
-        0,
-        Math.min(100, evaluation.completeness)
-      )
-      set({ teachBackEvaluation: evaluation, teachBackLoading: false })
-    } catch {
-      set({ teachBackLoading: false, teachBackFailed: true })
-    }
-  },
-
   reset: () => {
     set({
       session: null,
@@ -237,11 +172,6 @@ export const useLearnStore = create<LearnState>()((set, get) => ({
       interleavedAnswer: null,
       interleavedCorrect: null,
       elaborationRevealed: false,
-      teachBackResponse: "",
-      teachBackEvaluation: null,
-      teachBackLoading: false,
-      teachBackSubmitted: false,
-      teachBackFailed: false,
     })
   },
 }))

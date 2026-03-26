@@ -21,7 +21,6 @@ export interface SessionCompletion {
   domain: ExamType
   completedDate: string // ISO date string
   preTestScore: "correct" | "incorrect" | null
-  teachBackCompleteness: number | null // 0-100
 }
 
 export interface DomainStats {

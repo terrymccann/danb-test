@@ -7,7 +7,6 @@ import { PhaseContent } from "@/components/learn/PhaseContent"
 import { PhaseElaboration } from "@/components/learn/PhaseElaboration"
 import { PhaseScenario } from "@/components/learn/PhaseScenario"
 import { PhaseInterleaved } from "@/components/learn/PhaseInterleaved"
-import { PhaseTeachBack } from "@/components/learn/PhaseTeachBack"
 import { PhaseSRS } from "@/components/learn/PhaseSRS"
 import type { PhaseKey } from "@/types/learn"
 import {
@@ -16,7 +15,6 @@ import {
   Lightbulb,
   MessageSquare,
   Shuffle,
-  Mic,
   Calendar,
   Check,
   Menu,
@@ -30,7 +28,6 @@ const PHASE_COMPONENTS: Record<PhaseKey, React.ComponentType> = {
   elaboration: PhaseElaboration,
   scenario: PhaseScenario,
   interleaved: PhaseInterleaved,
-  teachBack: PhaseTeachBack,
   srsSchedule: PhaseSRS,
 }
 
@@ -40,8 +37,7 @@ const PHASE_META: Record<PhaseKey, { icon: React.ComponentType<{ className?: str
   elaboration: { icon: Lightbulb, label: "Elaboration" },
   scenario: { icon: MessageSquare, label: "Scenario" },
   interleaved: { icon: Shuffle, label: "Interleaved" },
-  teachBack: { icon: Mic, label: "Teach-Back" },
-  srsSchedule: { icon: Calendar, label: "SRS Schedule" },
+  srsSchedule: { icon: Calendar, label: "Review Schedule" },
 }
 
 function PhaseStepper() {
@@ -61,8 +57,6 @@ function PhaseStepper() {
         return s.scenarioConfidence !== null && s.scenarioAnswer !== null
       case "interleaved":
         return s.interleavedAnswer !== null
-      case "teachBack":
-        return s.teachBackResponse.trim().length > 0
       case "srsSchedule":
         return false
     }

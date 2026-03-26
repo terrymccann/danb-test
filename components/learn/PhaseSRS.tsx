@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation"
 export function PhaseSRS() {
   const session = useLearnStore((s) => s.session)
   const preTestCorrect = useLearnStore((s) => s.preTestCorrect)
-  const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
   const reset = useLearnStore((s) => s.reset)
   const recordSessionCompletion = useProgressStore(
     (s) => s.recordSessionCompletion
@@ -33,7 +32,6 @@ export function PhaseSRS() {
           : preTestCorrect === false
             ? "incorrect"
             : null,
-      teachBackCompleteness: teachBackEvaluation?.completeness ?? null,
     })
     reset()
     router.push(`/learn/${domain}`)
