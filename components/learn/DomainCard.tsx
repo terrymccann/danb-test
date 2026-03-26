@@ -5,12 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
+import { useProgressStore } from "@/stores/progress-store"
 import type { DomainLearnConfig } from "@/types/learn"
 
 const DOMAIN_COLORS: Record<string, string> = {
-  gc: "hsl(var(--primary))",
-  rhs: "hsl(var(--primary))",
-  ice: "hsl(var(--primary))",
+  gc: "var(--domain-gc)",
+  rhs: "var(--domain-rhs)",
+  ice: "var(--domain-ice)",
 }
 
 interface DomainCardProps {
@@ -23,8 +24,13 @@ export function DomainCard({ config }: DomainCardProps) {
     0
   )
 
-  // TODO: integrate useProgressStore when available
-  const completedCount = 0
+  const sessionCompletions = useProgressStore((s) => s.sessionCompletions)
+  const allSessionIds = config.subDomains.flatMap((sub) =>
+    sub.sessions.map((s) => s.id)
+  )
+  const completedCount = allSessionIds.filter(
+    (id) => id in sessionCompletions
+  ).length
   const progressPercent =
     totalSessions > 0 ? Math.round((completedCount / totalSessions) * 100) : 0
 

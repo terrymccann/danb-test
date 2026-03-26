@@ -1,6 +1,7 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
+import { useProgressStore } from "@/stores/progress-store"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -10,6 +11,9 @@ export function PhaseSRS() {
   const preTestCorrect = useLearnStore((s) => s.preTestCorrect)
   const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
   const reset = useLearnStore((s) => s.reset)
+  const recordSessionCompletion = useProgressStore(
+    (s) => s.recordSessionCompletion
+  )
   const router = useRouter()
 
   if (!session) return null
@@ -19,15 +23,18 @@ export function PhaseSRS() {
   function handleComplete() {
     if (!session) return
     const domain = session.domain
-    // TODO: integrate useProgressStore.recordSessionCompletion when available
-    // const completion = {
-    //   sessionId: session.id,
-    //   domain: session.domain,
-    //   completedDate: new Date().toISOString(),
-    //   preTestScore: preTestCorrect === true ? "correct" : preTestCorrect === false ? "incorrect" : null,
-    //   teachBackCompleteness: teachBackEvaluation?.completeness ?? null,
-    // }
-    // recordSessionCompletion(completion)
+    recordSessionCompletion({
+      sessionId: session.id,
+      domain: session.domain,
+      completedDate: new Date().toISOString(),
+      preTestScore:
+        preTestCorrect === true
+          ? "correct"
+          : preTestCorrect === false
+            ? "incorrect"
+            : null,
+      teachBackCompleteness: teachBackEvaluation?.completeness ?? null,
+    })
     reset()
     router.push(`/learn/${domain}`)
   }

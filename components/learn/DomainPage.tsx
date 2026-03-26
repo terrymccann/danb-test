@@ -5,6 +5,9 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { SessionCard } from "@/components/learn/SessionCard"
+import { useProgressStore } from "@/stores/progress-store"
+import { getRecommendations } from "@/lib/recommendations"
+import { domainConfigs } from "@/data/learn/index"
 import type { DomainLearnConfig } from "@/types/learn"
 
 interface DomainPageProps {
@@ -17,8 +20,22 @@ export function DomainPage({ config }: DomainPageProps) {
     0
   )
 
-  // TODO: integrate useProgressStore + getRecommendations when available
-  const completedCount = 0
+  const sessionCompletions = useProgressStore((s) => s.sessionCompletions)
+  const examAttempts = useProgressStore((s) => s.examAttempts)
+  const allSessions = domainConfigs.flatMap((d) =>
+    d.subDomains.flatMap((sub) => sub.sessions)
+  )
+  const recommendations = getRecommendations(
+    examAttempts,
+    sessionCompletions,
+    allSessions
+  )
+  const allSessionIds = config.subDomains.flatMap((sub) =>
+    sub.sessions.map((s) => s.id)
+  )
+  const completedCount = allSessionIds.filter(
+    (id) => id in sessionCompletions
+  ).length
   const progressPercent =
     totalSessions > 0 ? Math.round((completedCount / totalSessions) * 100) : 0
 
@@ -60,9 +77,22 @@ export function DomainPage({ config }: DomainPageProps) {
               </span>
             </div>
             <div className="space-y-2">
-              {sub.sessions.map((session) => (
-                <SessionCard key={session.id} session={session} />
-              ))}
+              {sub.sessions.map((session) => {
+                const completion = sessionCompletions[session.id]
+                const rec = recommendations.find(
+                  (r) => r.sessionId === session.id
+                )
+                return (
+                  <SessionCard
+                    key={session.id}
+                    session={session}
+                    isCompleted={!!completion}
+                    completedDate={completion?.completedDate ?? null}
+                    isRecommended={rec?.type === "weak-area"}
+                    isDueForReview={rec?.type === "review-due"}
+                  />
+                )
+              })}
             </div>
           </section>
         ))}
