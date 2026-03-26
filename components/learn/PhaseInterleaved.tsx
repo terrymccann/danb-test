@@ -1,9 +1,8 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
-import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { Badge } from "@/components/ui/badge"
+import { FeedbackBox } from "@/components/learn/FeedbackBox"
 import { cn } from "@/lib/utils"
 
 export function PhaseInterleaved() {
@@ -24,29 +23,20 @@ export function PhaseInterleaved() {
   const answered = interleavedAnswer !== null
 
   return (
-    <div className="space-y-4">
-      <PhaseBadge phase="interleaved" />
-      <h2 className="text-lg font-medium">Mixed-domain practice</h2>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold">Interleaved Practice</h2>
 
-      <div className="rounded-md bg-muted p-4 text-sm leading-relaxed">
-        <div className="mb-2">
-          <Badge variant="outline">{domainLabel}</Badge>
-        </div>
-        {question}
-      </div>
+      <Badge variant="outline">{domainLabel}</Badge>
 
-      <div className="space-y-2">
+      <div
+        className="text-sm leading-relaxed"
+        dangerouslySetInnerHTML={{ __html: question }}
+      />
+
+      <div className="space-y-3">
         {options.map((option) => {
           const isSelected = interleavedAnswer === option.id
           const isCorrect = option.id === correctOptionId
-          let variant = ""
-          if (answered) {
-            if (isCorrect)
-              variant = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950"
-            else if (isSelected)
-              variant = "border-red-500 bg-red-50 dark:bg-red-950"
-            else variant = "opacity-50"
-          }
 
           return (
             <button
@@ -55,9 +45,11 @@ export function PhaseInterleaved() {
               disabled={answered}
               onClick={() => answerInterleaved(option.id)}
               className={cn(
-                "w-full rounded-md border p-3 text-left text-sm leading-relaxed transition-colors",
-                !answered && "hover:border-primary hover:bg-muted/50",
-                answered ? variant : ""
+                "w-full rounded-lg border p-4 text-left text-sm leading-relaxed transition-colors",
+                !answered && "hover:border-primary hover:bg-muted/50 cursor-pointer",
+                answered && isCorrect && "border-green-500 bg-green-50 dark:bg-green-950/30",
+                answered && isSelected && !isCorrect && "border-red-500 bg-red-50 dark:bg-red-950/30",
+                answered && !isSelected && !isCorrect && "opacity-50"
               )}
             >
               {option.text}
@@ -66,12 +58,12 @@ export function PhaseInterleaved() {
         })}
       </div>
 
-      <FeedbackBox variant="correct" show={answered && !!interleavedCorrect}>
-        <span dangerouslySetInnerHTML={{ __html: feedbackCorrect }} />
-      </FeedbackBox>
-      <FeedbackBox variant="incorrect" show={answered && !interleavedCorrect}>
-        <span dangerouslySetInnerHTML={{ __html: feedbackIncorrect }} />
-      </FeedbackBox>
+      {answered && interleavedCorrect !== null && (
+        <FeedbackBox
+          isCorrect={interleavedCorrect}
+          feedback={interleavedCorrect ? feedbackCorrect : feedbackIncorrect}
+        />
+      )}
     </div>
   )
 }

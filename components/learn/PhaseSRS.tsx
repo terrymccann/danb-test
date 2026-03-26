@@ -1,55 +1,63 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
-import { PhaseBadge } from "@/components/learn/PhaseBadge"
-import { cn } from "@/lib/utils"
-
-const INTERVAL_STYLES: Record<string, string> = {
-  Tomorrow: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-  "3 days": "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  "8 days":
-    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
-}
+import { Button } from "@/components/ui/button"
+import { Calendar } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function PhaseSRS() {
   const session = useLearnStore((s) => s.session)
+  const preTestCorrect = useLearnStore((s) => s.preTestCorrect)
+  const teachBackEvaluation = useLearnStore((s) => s.teachBackEvaluation)
+  const reset = useLearnStore((s) => s.reset)
+  const router = useRouter()
+
   if (!session) return null
 
   const { items, sessionSummary } = session.phases.srsSchedule
 
-  return (
-    <div className="space-y-4">
-      <PhaseBadge phase="srsSchedule" />
-      <h2 className="text-lg font-medium">Review schedule</h2>
-      <p className="text-sm text-muted-foreground">
-        These concepts are scheduled for review to strengthen retention.
-      </p>
+  function handleComplete() {
+    if (!session) return
+    const domain = session.domain
+    // TODO: integrate useProgressStore.recordSessionCompletion when available
+    // const completion = {
+    //   sessionId: session.id,
+    //   domain: session.domain,
+    //   completedDate: new Date().toISOString(),
+    //   preTestScore: preTestCorrect === true ? "correct" : preTestCorrect === false ? "incorrect" : null,
+    //   teachBackCompleteness: teachBackEvaluation?.completeness ?? null,
+    // }
+    // recordSessionCompletion(completion)
+    reset()
+    router.push(`/learn/${domain}`)
+  }
 
-      <div className="space-y-2">
+  return (
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold">Review Schedule</h2>
+
+      <p className="text-sm text-muted-foreground">{sessionSummary}</p>
+
+      <div className="space-y-3">
         {items.map((item) => (
           <div
             key={item.concept}
-            className="flex items-center gap-3 rounded-md bg-muted p-3 text-sm"
+            className="flex items-start gap-3 rounded-lg border p-3"
           >
-            <span
-              className={cn(
-                "shrink-0 rounded-md px-2 py-0.5 text-xs font-medium",
-                INTERVAL_STYLES[item.interval] ?? "bg-muted-foreground/10"
-              )}
-            >
-              {item.interval}
-            </span>
-            <span className="leading-relaxed">{item.concept}</span>
+            <Calendar className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground" />
+            <div>
+              <p className="text-sm font-medium">Review in {item.interval}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.concept}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="rounded-md bg-muted p-4">
-        <p className="mb-2 text-sm font-medium">Session complete</p>
-        <p className="text-sm leading-relaxed text-muted-foreground">
-          {sessionSummary}
-        </p>
-      </div>
+      <Button size="lg" className="w-full" onClick={handleComplete}>
+        Complete Session
+      </Button>
     </div>
   )
 }

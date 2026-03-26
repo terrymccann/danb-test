@@ -12,7 +12,7 @@ export default async function LearnDomainPage({
 
   const config = getDomainConfig(domain as ExamType)
   if (!config) {
-    redirect("/")
+    redirect("/learn")
   }
 
   return <DomainPage config={config} />

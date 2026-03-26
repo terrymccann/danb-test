@@ -1,17 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { BookOpen, FileText } from "lucide-react"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
 import type { DomainLearnConfig } from "@/types/learn"
+
+const DOMAIN_COLORS: Record<string, string> = {
+  gc: "hsl(var(--primary))",
+  rhs: "hsl(var(--primary))",
+  ice: "hsl(var(--primary))",
+}
 
 interface DomainCardProps {
   config: DomainLearnConfig
@@ -23,33 +23,41 @@ export function DomainCard({ config }: DomainCardProps) {
     0
   )
 
+  // TODO: integrate useProgressStore when available
+  const completedCount = 0
+  const progressPercent =
+    totalSessions > 0 ? Math.round((completedCount / totalSessions) * 100) : 0
+
+  const buttonLabel =
+    completedCount === 0
+      ? "Start"
+      : completedCount >= totalSessions
+        ? "Review"
+        : "Continue"
+
   return (
-    <Card className="flex flex-col">
+    <Card
+      className="flex flex-col"
+      style={{ borderTop: `3px solid ${DOMAIN_COLORS[config.domain] ?? "hsl(var(--primary))"}` }}
+    >
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <Badge variant="outline" className="text-sm font-semibold">
-            {config.code}
-          </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="outline">{config.code}</Badge>
+          <CardTitle className="text-xl">{config.title}</CardTitle>
         </div>
-        <CardTitle className="text-xl">{config.title}</CardTitle>
-        <CardDescription>{config.examDetails}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col justify-between gap-4">
         <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <BookOpen className="h-4 w-4" />
-            <span>{totalSessions} learning sessions</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <FileText className="h-4 w-4" />
-            <span>{config.subDomains.map((sub) => sub.name).join(" · ")}</span>
-          </div>
+          <Progress value={progressPercent} />
+          <p className="text-sm text-muted-foreground">
+            {completedCount}/{totalSessions} sessions completed
+          </p>
         </div>
         <Link
           href={`/learn/${config.domain}`}
           className={buttonVariants({ className: "w-full" })}
         >
-          View Sessions
+          {buttonLabel}
         </Link>
       </CardContent>
     </Card>

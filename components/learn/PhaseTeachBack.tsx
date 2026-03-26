@@ -1,11 +1,11 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
-import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Loader2, AlertCircle } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function PhaseTeachBack() {
@@ -17,126 +17,112 @@ export function PhaseTeachBack() {
   const teachBackFailed = useLearnStore((s) => s.teachBackFailed)
   const setTeachBackResponse = useLearnStore((s) => s.setTeachBackResponse)
   const submitTeachBack = useLearnStore((s) => s.submitTeachBack)
-  const nextPhase = useLearnStore((s) => s.nextPhase)
 
   if (!session) return null
-  const { prompt, modelAnswer } = session.phases.teachBack
+  const { prompt } = session.phases.teachBack
   const hasResponse = teachBackResponse.trim().length > 0
   const hasEvaluation = teachBackEvaluation !== null
-  const showModelAnswer =
-    hasEvaluation || (teachBackSubmitted && !teachBackLoading)
 
   return (
-    <div className="space-y-4">
-      <PhaseBadge phase="teachBack" />
-      <h2 className="text-lg font-medium">Explain it back</h2>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold">Teach-Back</h2>
 
-      <div className="rounded-md border-l-3 border-violet-500 bg-violet-50 p-4 text-sm leading-relaxed text-violet-900 dark:bg-violet-950 dark:text-violet-100">
-        <strong>Teach-back prompt:</strong>
-        <br />
-        <br />
-        {prompt}
-      </div>
+      <Card>
+        <CardContent className="pt-6">
+          <p className="text-sm leading-relaxed">{prompt}</p>
+        </CardContent>
+      </Card>
 
       <textarea
         value={teachBackResponse}
         onChange={(e) => setTeachBackResponse(e.target.value)}
         placeholder="Type your explanation here..."
-        disabled={hasEvaluation || teachBackFailed}
-        className="min-h-[120px] w-full resize-y rounded-md border bg-background p-3 text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none disabled:opacity-50"
+        disabled={hasEvaluation || teachBackLoading}
+        className="min-h-[120px] w-full border rounded-lg p-3 bg-background text-sm leading-relaxed placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none disabled:opacity-50 resize-y"
       />
 
       {!hasEvaluation && !teachBackLoading && !teachBackFailed && (
-        <div className="flex items-center gap-3">
-          <Button onClick={submitTeachBack} disabled={!hasResponse}>
-            Submit for AI evaluation
-          </Button>
-          {hasResponse && (
-            <button
-              type="button"
-              onClick={nextPhase}
-              className="text-sm text-muted-foreground underline hover:text-foreground"
-            >
-              Skip evaluation
-            </button>
-          )}
-        </div>
+        <Button
+          onClick={submitTeachBack}
+          disabled={!hasResponse || teachBackLoading}
+        >
+          {teachBackLoading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+          Submit for Review
+        </Button>
       )}
 
       {teachBackLoading && (
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Evaluating your response...
-          </div>
-          <button
-            type="button"
-            onClick={nextPhase}
-            className="text-sm text-muted-foreground underline hover:text-foreground"
-          >
-            Skip evaluation
-          </button>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Evaluating your response...
         </div>
       )}
 
       {teachBackFailed && !hasEvaluation && (
-        <div className="flex items-center gap-2 rounded-md border-l-3 border-amber-500 bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-100">
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          AI evaluation unavailable. Compare your response to the model answer
-          below.
+        <div className="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 p-4 flex items-center justify-between">
+          <p className="text-sm text-red-700 dark:text-red-400">
+            AI evaluation unavailable. Please try again.
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={submitTeachBack}
+          >
+            Try Again
+          </Button>
         </div>
       )}
 
       {hasEvaluation && teachBackEvaluation && (
-        <div className="space-y-3 rounded-md border p-4">
-          <div className="flex items-center gap-3">
-            <Badge
-              className={cn(
-                teachBackEvaluation.accuracy === "good" &&
-                  "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
-                teachBackEvaluation.accuracy === "partial" &&
-                  "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-                teachBackEvaluation.accuracy === "missed" &&
-                  "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-              )}
-            >
-              {teachBackEvaluation.accuracy === "good" && "Good"}
-              {teachBackEvaluation.accuracy === "partial" && "Partial"}
-              {teachBackEvaluation.accuracy === "missed" && "Needs work"}
-            </Badge>
-            <Progress
-              value={teachBackEvaluation.completeness}
-              className="flex-1"
-            />
-            <span className="text-xs text-muted-foreground">
-              {teachBackEvaluation.completeness}%
-            </span>
-          </div>
-          <p className="text-sm leading-relaxed">
-            {teachBackEvaluation.feedback}
-          </p>
-          {teachBackEvaluation.missedConcepts.length > 0 && (
-            <div>
-              <p className="mb-1 text-xs font-medium text-muted-foreground">
-                Missed concepts:
-              </p>
-              <ul className="list-inside list-disc space-y-1 text-sm">
-                {teachBackEvaluation.missedConcepts.map((concept) => (
-                  <li key={concept}>{concept}</li>
-                ))}
-              </ul>
+        <Card>
+          <CardContent className="pt-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <Badge
+                className={cn(
+                  teachBackEvaluation.accuracy === "good" &&
+                    "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+                  teachBackEvaluation.accuracy === "partial" &&
+                    "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
+                  teachBackEvaluation.accuracy === "missed" &&
+                    "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                )}
+              >
+                {teachBackEvaluation.accuracy === "good" && "Good"}
+                {teachBackEvaluation.accuracy === "partial" && "Partial"}
+                {teachBackEvaluation.accuracy === "missed" && "Missed"}
+              </Badge>
             </div>
-          )}
-        </div>
-      )}
 
-      {showModelAnswer && (
-        <div className="rounded-md bg-muted p-4 text-sm leading-relaxed">
-          <strong>Model answer:</strong>
-          <br />
-          <br />
-          {modelAnswer}
-        </div>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-muted-foreground">Completeness</span>
+              <Progress
+                value={teachBackEvaluation.completeness}
+                className="flex-1"
+              />
+              <span className="text-xs text-muted-foreground">
+                {teachBackEvaluation.completeness}%
+              </span>
+            </div>
+
+            <p className="text-sm leading-relaxed">
+              {teachBackEvaluation.feedback}
+            </p>
+
+            {teachBackEvaluation.missedConcepts.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {teachBackEvaluation.missedConcepts.map((concept) => (
+                  <Badge
+                    key={concept}
+                    variant="destructive"
+                    className="text-xs"
+                  >
+                    {concept}
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       )}
     </div>
   )

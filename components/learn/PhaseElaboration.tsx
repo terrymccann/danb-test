@@ -1,7 +1,7 @@
 "use client"
 
 import { useLearnStore } from "@/stores/learn-store"
-import { PhaseBadge } from "@/components/learn/PhaseBadge"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 export function PhaseElaboration() {
@@ -13,24 +13,26 @@ export function PhaseElaboration() {
   const { prompt, expertReasoning } = session.phases.elaboration
 
   return (
-    <div className="space-y-4">
-      <PhaseBadge phase="elaboration" />
-      <h2 className="text-lg font-medium">Think deeper</h2>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold">Elaboration</h2>
 
-      <div className="rounded-md border-l-3 border-amber-500 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900 dark:bg-amber-950 dark:text-amber-100">
-        <strong>Think about this before revealing the answer:</strong>
-        <br />
-        <br />
-        {prompt}
-      </div>
+      <Card className="bg-primary/5">
+        <CardContent className="pt-6">
+          <p className="text-sm leading-relaxed">{prompt}</p>
+        </CardContent>
+      </Card>
 
       {!elaborationRevealed ? (
-        <Button onClick={revealElaboration}>Reveal expert reasoning</Button>
+        <Button variant="outline" onClick={revealElaboration}>
+          Reveal Expert Reasoning
+        </Button>
       ) : (
-        <div
-          className="rounded-md bg-muted p-4 text-sm leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: expertReasoning }}
-        />
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+          <div
+            className="text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: expertReasoning }}
+          />
+        </div>
       )}
     </div>
   )
