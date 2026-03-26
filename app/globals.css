@@ -126,3 +126,9 @@
     @apply font-sans;
     }
 }
+
+:root {
+  --domain-gc: #3b82f6;
+  --domain-rhs: #8b5cf6;
+  --domain-ice: #10b981;
+}
