@@ -1,11 +1,11 @@
 "use client"
 
 import { Flag } from "lucide-react"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { useExamStore } from "@/stores/exam-store"
 import { cn } from "@/lib/utils"
+
+const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
 export function QuestionDisplay() {
   const questions = useExamStore((s) => s.questions)
@@ -23,50 +23,45 @@ export function QuestionDisplay() {
 
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <p className="text-sm text-muted-foreground">
-          Question {currentIndex + 1} of {questions.length}
-        </p>
-        <p className="text-lg leading-relaxed font-medium">{question.stem}</p>
+      <p className="text-lg font-medium leading-relaxed mb-6">
+        {question.stem}
+      </p>
+
+      <div className="space-y-3">
+        {question.options.map((option, i) => {
+          const isSelected = selectedOption === option.id
+
+          return (
+            <button
+              key={option.id}
+              onClick={() => selectAnswer(question.id, option.id)}
+              className={cn(
+                "w-full border rounded-lg p-4 cursor-pointer transition-colors flex items-center gap-3 text-left",
+                isSelected
+                  ? "border-primary bg-primary/5"
+                  : "border-border hover:border-primary/50 hover:bg-primary/5"
+              )}
+            >
+              <span className="w-7 h-7 rounded-full bg-muted text-xs font-semibold flex items-center justify-center shrink-0">
+                {OPTION_LETTERS[i]}
+              </span>
+              <span className="text-sm leading-relaxed">{option.text}</span>
+            </button>
+          )
+        })}
       </div>
 
-      <RadioGroup
-        value={selectedOption}
-        onValueChange={(value) => selectAnswer(question.id, value)}
-        className="space-y-3"
-      >
-        {question.options.map((option) => (
-          <div
-            key={option.id}
-            className={cn(
-              "flex items-start gap-3 rounded-lg border p-4 transition-colors",
-              selectedOption === option.id
-                ? "border-primary bg-primary/5"
-                : "hover:bg-muted/50"
-            )}
-          >
-            <RadioGroupItem
-              value={option.id}
-              id={`option-${option.id}`}
-              className="mt-0.5"
-            />
-            <Label
-              htmlFor={`option-${option.id}`}
-              className="flex-1 cursor-pointer text-sm leading-relaxed font-normal"
-            >
-              {option.text}
-            </Label>
-          </div>
-        ))}
-      </RadioGroup>
-
       <Button
-        variant={isFlagged ? "default" : "outline"}
+        variant="outline"
         size="sm"
         onClick={() => toggleFlag(question.id)}
-        className="gap-2"
+        className={cn(
+          "gap-2",
+          isFlagged &&
+            "bg-[color:var(--warning)]/10 border-[color:var(--warning)] text-[color:var(--warning)]"
+        )}
       >
-        <Flag className="h-4 w-4" />
+        <Flag className={cn("h-4 w-4", isFlagged && "fill-current")} />
         {isFlagged ? "Flagged for Review" : "Flag for Review"}
       </Button>
     </div>

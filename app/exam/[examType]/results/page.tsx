@@ -1,12 +1,14 @@
 "use client"
 
-import { use, useEffect } from "react"
+import { use, useEffect, useRef } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, RotateCcw } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { RotateCcw, Target } from "lucide-react"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { ResultsSummary } from "@/components/exam/ResultsSummary"
 import { useExamStore } from "@/stores/exam-store"
+import { useProgressStore } from "@/stores/progress-store"
 import { getExamConfig } from "@/lib/exam-config"
 import { ExamType } from "@/types/exam"
 
@@ -21,7 +23,8 @@ export default function ResultsPage({
   const questions = useExamStore((s) => s.questions)
   const answers = useExamStore((s) => s.answers)
   const startExam = useExamStore((s) => s.startExam)
-  const reset = useExamStore((s) => s.reset)
+  const recordExamAttempt = useProgressStore((s) => s.recordExamAttempt)
+  const hasRecorded = useRef(false)
 
   const config = getExamConfig(examType)
 
@@ -31,6 +34,21 @@ export default function ResultsPage({
     }
   }, [result, router])
 
+  // Record exam attempt to progress store
+  useEffect(() => {
+    if (result && !hasRecorded.current) {
+      hasRecorded.current = true
+      recordExamAttempt({
+        examType: result.examType,
+        date: new Date().toISOString(),
+        score: result.percentage,
+        totalQuestions: result.totalQuestions,
+        correctAnswers: result.correctAnswers,
+        topicBreakdown: result.topicScores,
+      })
+    }
+  }, [result, recordExamAttempt])
+
   if (!result || !config) return null
 
   const handleRetake = () => {
@@ -38,28 +56,36 @@ export default function ResultsPage({
     router.push(`/exam/${examType}/session`)
   }
 
-  const handleHome = () => {
-    reset()
-    router.push("/")
-  }
-
   return (
-    <main className="mx-auto max-w-2xl px-4 py-12">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{config.title} — Results</h1>
+    <main className="max-w-3xl mx-auto px-4 py-8">
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-1">
+          <h1 className="text-2xl font-bold">{config.title}</h1>
+          <Badge variant="outline">{config.code}</Badge>
+        </div>
+        <p className="text-muted-foreground">Results</p>
       </div>
 
       <ResultsSummary result={result} questions={questions} answers={answers} />
 
-      <div className="mt-6 flex gap-3">
-        <Button variant="outline" onClick={handleHome} className="gap-2">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Home
-        </Button>
+      <div className="flex gap-3 mt-6">
+        <Link
+          href="/practice"
+          className={buttonVariants({ variant: "outline" })}
+        >
+          Back to Practice
+        </Link>
         <Button onClick={handleRetake} className="gap-2">
           <RotateCcw className="h-4 w-4" />
           Retake Exam
         </Button>
+        <Link
+          href="/learn"
+          className={buttonVariants({ variant: "outline", className: "gap-2" })}
+        >
+          <Target className="h-4 w-4" />
+          Review Weak Areas
+        </Link>
       </div>
     </main>
   )
