@@ -89,7 +89,7 @@ export function DomainProgressCard({
           <div>
             <div className="text-muted-foreground text-xs">Sessions</div>
             <div className="font-medium">
-              {stats.sessionsCompleted}/{stats.totalSessions} completed
+              {stats.sessionsCompleted}/{stats.sessionsTotal} completed
             </div>
           </div>
           <div>

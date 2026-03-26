@@ -63,12 +63,12 @@ export function PastAttempts() {
                     </span>
                     <Badge
                       className={
-                        attempt.passed
+                        attempt.score >= 75
                           ? "bg-green-600 text-white"
                           : "bg-red-600 text-white"
                       }
                     >
-                      {attempt.passed ? "Pass" : "Fail"}
+                      {attempt.score >= 75 ? "Pass" : "Fail"}
                     </Badge>
                   </li>
                 ))}

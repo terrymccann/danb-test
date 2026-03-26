@@ -43,7 +43,7 @@ export function QuickActions() {
       const domainExams = examAttempts.filter((a) => a.examType === d)
       if (domainExams.length > 0) {
         const avg =
-          domainExams.reduce((s, e) => s + e.percentage, 0) /
+          domainExams.reduce((s, e) => s + e.score, 0) /
           domainExams.length
         if (avg < worstScore) {
           worstScore = avg

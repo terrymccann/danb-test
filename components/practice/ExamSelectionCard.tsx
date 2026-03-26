@@ -36,9 +36,12 @@ export function ExamSelectionCard({ config }: ExamSelectionCardProps) {
   const [expanded, setExpanded] = useState(false)
   const router = useRouter()
   const startExam = useExamStore((s) => s.startExam)
-  const getBestScore = useProgressStore((s) => s.getBestScore)
+  const examAttempts = useProgressStore((s) => s.examAttempts)
 
-  const bestScore = getBestScore(config.type)
+  const domainAttempts = examAttempts.filter((a) => a.examType === config.type)
+  const bestScore = domainAttempts.length > 0
+    ? Math.max(...domainAttempts.map((a) => a.score))
+    : null
 
   function handleStart() {
     startExam(config.type)
